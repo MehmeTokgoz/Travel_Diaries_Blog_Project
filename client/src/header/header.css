@@ -1,0 +1,28 @@
+.toolbar {
+  background-color: white;
+}
+.toolbar img {
+  width: 80px;
+  height: 50px;
+}
+
+.travelicon {
+  color: rgb(39, 98, 209);
+}
+
+.tabs {
+  margin-left: auto;
+  text-decoration: none;
+}
+.tabs .tab {
+  text-decoration: none;
+}
+.tabs .tab:hover {
+  color: rgb(39, 98, 209);
+  text-decoration: underline;
+  text-underline-offset: 18px;
+}
+
+.appbar {
+  position: sticky;
+}/*# sourceMappingURL=header.css.map */
