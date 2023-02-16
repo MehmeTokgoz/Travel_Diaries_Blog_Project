@@ -1,0 +1,29 @@
+$main-color: rgb(39, 98, 209);
+.main-box {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+
+    img {
+        width: 100%;
+        height: 80vh;
+    }
+
+    .button-box {
+        Button {
+            color: black;
+            box-sizing: border-box;
+            background-color: $main-color;
+            margin: 2%;
+        }
+        .diary-button {
+            @extend Button
+        }
+    }
+
+}
+
+
+
+
+

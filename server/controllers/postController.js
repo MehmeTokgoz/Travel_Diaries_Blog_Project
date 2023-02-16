@@ -1,4 +1,4 @@
-const { default: mongoose } = require("mongoose");
+const mongoose  = require("mongoose");
 const Post = require("../modules/Post");
 const User = require("../modules/User");
 
@@ -134,7 +134,7 @@ const deletePost = async (req, res) => {
     session.startTransaction();
     post = await Post.findById(id).populate("user");
     post.user.posts.pull(post);
-    await post.user.save({session})
+    await post.user.save({ session });
     post = await Post.findByIdAndDelete(id);
     session.commitTransaction();
   } catch (error) {

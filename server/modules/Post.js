@@ -21,7 +21,7 @@ const postSchema = new mongoose.Schema({
         },
     date: {
         type: Date,
-        required: true
+        required: false
     },
     user: {
         type: mongoose.Types.ObjectId, ref: "User",

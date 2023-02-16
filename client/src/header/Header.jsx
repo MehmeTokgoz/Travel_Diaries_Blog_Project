@@ -5,7 +5,7 @@ import "./header.scss";
 import { Link } from "react-router-dom";
 import logo from "../assets/mt.jpg";
 
-const linksArr = ["home", "diaries", "auth"];
+const linksArr = ["home", "diaries", "login"];
 function Header() {
   const [value, setValue] = useState(false);
   return (
@@ -25,7 +25,7 @@ function Header() {
                 key={link}
                 label={link}
                 LinkComponent={Link}
-                to={`/${link === "home" ? "" : link}`}
+                to={`/${link === "home" ? "" : link}` }
               />
             ))}
           </Tabs>

@@ -3,7 +3,7 @@ import "./App.scss";
 import Header from "./header/Header";
 import Home from "./home/Home";
 import Diaries from "./diaries/Diaries";
-import Auth from "./auth/Auth";
+import Login from "./auth/Login";
 
 function App() {
   return (
@@ -16,7 +16,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/diaries" element={<Diaries />} />
-          <Route path="/auth" element={<Auth />} />
+          <Route path="/login" element={<Login />} />
         </Routes>
       </section>
     </div>
