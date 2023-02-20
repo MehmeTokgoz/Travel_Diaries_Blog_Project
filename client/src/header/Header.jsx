@@ -5,7 +5,7 @@ import "./header.scss";
 import { Link } from "react-router-dom";
 import logo from "../assets/mt.jpg";
 
-const linksArr = ["home", "diaries", "login"];
+const linksArr = ["home", "diaries",  "profile", "add", "login"];
 function Header() {
   const [value, setValue] = useState(false);
   return (

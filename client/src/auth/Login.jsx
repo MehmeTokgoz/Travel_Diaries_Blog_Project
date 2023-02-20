@@ -30,7 +30,7 @@ function Login() {
         if (data.token) {
           localStorage.setItem("token", data.token);
           console.log(data)
-          navigate("/diaries");
+          navigate("/profile");
         }
       })
       .catch((error) => console.log(error));

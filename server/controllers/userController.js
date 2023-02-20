@@ -18,6 +18,22 @@ const getAllUsers = async (req, res) => {
   return res.status(200).json({ users });
 };
 
+const getUserById = async (req, res) => {
+  const id = req.params.id;
+
+  let user;
+  try {
+    user = await User.findById(id).populate("posts");
+
+    if (!user) {
+      return res.status(404).json({ message: "No user found" });
+    }
+    return res.status(200).json({ user });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 const signUp = async (req, res, next) => {
   const { name, email, password } = req.body;
 
@@ -164,4 +180,4 @@ const verifyUser = async (req, res) => {
 //   }
 // };
 
-module.exports = { getAllUsers, signUp, login, verifyUser };
+module.exports = { getAllUsers, signUp, login, verifyUser, getUserById };
