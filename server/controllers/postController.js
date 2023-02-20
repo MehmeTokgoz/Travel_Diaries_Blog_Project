@@ -5,7 +5,7 @@ const User = require("../modules/User");
 const getAllPosts = async (req, res) => {
   let posts;
   try {
-    posts = await Post.find();
+    posts = await Post.find().populate("user");
   } catch (error) {
     return console.log(error);
   }
@@ -13,6 +13,7 @@ const getAllPosts = async (req, res) => {
   if (!posts) {
     return res.status(500).json({ message: "Internal Server Error" });
   }
+
   return res.status(200).json({ posts });
 };
 

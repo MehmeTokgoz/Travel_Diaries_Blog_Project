@@ -7,37 +7,45 @@ import "./diaries.scss";
 
 function Diaries() {
   const [posts, setPosts] = useState();
-
-  const getAllPosts = async () => {
-    const res = await axios.get("http://localhost:4000/posts/");
-
-    if (res.status !== 200) {
-      return console.log("Error occured");
-    } 
-      const data = res.data;
-      return data;
-  };
+  const [userId, setUserId] = useState();
+  console.log(userId);
+  useEffect(() => {
+    if (localStorage.getItem("token")) {
+      axios
+        .post("http://localhost:4000/user/verify", {
+          token: localStorage.getItem("token"),
+        })
+        .then(({ data }) => setUserId(data._id));
+    }
+  }, []);
 
   useEffect(() => {
-    getAllPosts()
-      .then((data) => {
-        setPosts(data.posts);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, []);
+    axios.get("http://localhost:4000/posts/").then(({ data }) => {
+      if (data) {
+        const posts = data.posts;
+        const userPosts = posts.filter((post) => post.user._id === userId);
+        console.log(userPosts);
+
+        setPosts(userPosts);
+      }
+    });
+  }, [userId]);
 
   return (
     <Box className="diary-container">
-      {posts && posts.map((item, index) => <DiaryCard 
-      date = {new Date(`${item.date}`).toLocaleDateString()}
-      description = {item.description}
-      image = {item.image}
-      id = {item._id}
-      location = {item.location}
-      title= {item.title}
-      key={index} />)}
+      {posts &&
+        posts.map((item, index) => (
+          <DiaryCard
+            date={new Date(`${item.date}`).toLocaleDateString()}
+            description={item.description}
+            image={item.image}
+            id={item._id}
+            location={item.location}
+            title={item.title}
+            user={item.name}
+            key={index}
+          />
+        ))}
     </Box>
   );
 }

@@ -1,17 +1,15 @@
 import axios from "axios";
 import { Button, FormLabel, TextField, Typography } from "@mui/material";
 import { Box } from "@mui/system";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import "./login-signup.scss";
 
 function Login() {
   const [isSignup, setIsSignup] = useState(false);
   const [inputs, setInputs] = useState({ name: "", email: "", password: "" });
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log(inputs);
-  };
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     setInputs((prevState) => ({
@@ -22,29 +20,42 @@ function Login() {
 
   const authRequest = async (signup, data) => {
     const res = await axios
-      .post(`http://localhost:4000/user/${signup ? "signup" : "login"}`, {
+      .post(`http://localhost:4000/user/${signup ? "signup" : "login"}/`, {
         name: data.name ? data.name : "",
         email: data.email,
         password: data.password,
       })
+      .then(({ data }) => {
+
+        if (data.token) {
+          localStorage.setItem("token", data.token);
+          console.log(data)
+          navigate("/diaries");
+        }
+      })
       .catch((error) => console.log(error));
 
-    if (res.status !== 200 || res.status !== 201) {
-      return console.log("Authentication Failed");
-    }
-    const resData = await res.data;
-    return resData;
+    // if (res.status !== 200 && res.status !== 201) {
+    //   return console.log("Authentication Failed");
+    // }
+    // const resData = await res.data;
+    // return resData;
   };
 
-  if (isSignup) {
-    authRequest(true, inputs)
-      .then((data) => console.log(data))
-      .catch((error) => console.log(error));
-  } else {
-    authRequest(false, inputs)
-      .then((data) => console.log(data))
-      .catch((error) => console.log(error));
-  }
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(inputs);
+    if (isSignup) {
+      authRequest(true, inputs)
+        // .then((data) => console.log(data))
+        // .catch((error) => console.log(error));
+      setIsSignup(false);
+    } else {
+      authRequest(false, inputs)
+        // .then((data) => console.log({data}))
+        // .catch((error) => console.log(error));
+    }
+  };
 
   return (
     <Box>

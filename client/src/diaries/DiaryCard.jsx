@@ -33,11 +33,12 @@ const DiaryCard = (props) => {
         date={props.date}
         id = {props.id}
         description={props.description}
+        user={props.user}
       />
       <img height="194" src={props.image} alt = {props.title}/>
       <CardContent>
         <Typography className="card-info-header">
-          {props.title}
+          {props.title} <br />
         </Typography>
         <hr />
         <Box>
