@@ -27,9 +27,11 @@ function Diaries() {
         console.log(userPosts);
 
         setPosts(userPosts);
+        console.log(userPosts.map((item)=>item._id));
       }
     });
   }, [userId]);
+
 
   return (
     <Box className="diary-container">
@@ -42,7 +44,7 @@ function Diaries() {
             id={item._id}
             location={item.location}
             title={item.title}
-            user={item.name}
+            user={item.name} //cast error control
             key={index}
           />
         ))}

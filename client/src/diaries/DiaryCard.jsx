@@ -10,9 +10,11 @@ import {
   CardActions,
   Button,
 } from "@mui/material";
+import { Link } from "react-router-dom";
 import "./diaryCard.scss";
 // import diary1 from "../assets/1-Diary One1129244638-612x612.jpg";
 import PlaceIcon from "@mui/icons-material/Place";
+
 const DiaryCard = (props) => {
   return (
     <Card className="main-card-box">
@@ -46,7 +48,7 @@ const DiaryCard = (props) => {
         </Box>
       </CardContent>
       <CardActions className="cardActions-buttons">
-        <Button>EDIT</Button>
+        <Button  LinkComponent={Link} to={`/post/${props.id}`}>EDIT</Button>
         <Button>DELETE</Button>
       </CardActions>
     </Card>
