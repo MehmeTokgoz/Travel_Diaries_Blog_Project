@@ -52,7 +52,8 @@ function AddPost() {
     e.preventDefault();
     console.log(inputs);
     addPost(inputs)
-      .then((onResReceived) => {
+      .then(() => {
+        navigate("/diaries")
         alert("Post added")
         console.log(onResReceived);
       })

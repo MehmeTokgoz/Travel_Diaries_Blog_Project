@@ -29,6 +29,7 @@ function Login() {
 
         if (data.token) {
           localStorage.setItem("token", data.token);
+          localStorage.setItem("userId", data.existingUser._id);
           console.log(data)
           navigate("/profile");
         }

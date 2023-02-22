@@ -3,7 +3,7 @@ const mongoose = require("../modules/connection")
 const userSchema = new mongoose.Schema({
     name: {
         type: String,
-        required: true,
+        required: true
     },
     email: {
         type: String,
