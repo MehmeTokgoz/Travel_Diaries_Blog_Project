@@ -6,6 +6,26 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 function AddPost() {
+  const addPost = async (data) => {
+    const res = await axios
+      .post("http://localhost:4000/posts/", {
+        title: data.title,
+        description: data.description,
+        location: data.location,
+        image: data.image,
+        date: data.date,
+        user: localStorage.getItem("userId"),
+      })
+      .catch((err) => console.log(err));
+    console.log(res);
+    if (res.status !== 201) {
+      return console.log("Error Occured");
+    }
+
+    const resData = await res.data;
+    return resData;
+  };
+
   const navigate = useNavigate();
 
   const [inputs, setInputs] = useState({
@@ -16,20 +36,6 @@ function AddPost() {
     date: "",
   });
 
-  const addPost = async (data) => {
-    await axios
-      .post("http://localhost:4000/posts/", {
-        title: data.title,
-        description: data.description,
-        location: data.location,
-        image: data.image,
-        date: data.date,
-        user: localStorage.getItem("userId"),
-      })
-      .then((data) => console.log(data))
-      .catch((err) => console.log(err));
-  };
-
   const handleChange = (e) => {
     setInputs((prevState) => ({
       ...prevState,
@@ -37,19 +43,20 @@ function AddPost() {
     }));
   };
 
-    // const onResReceived = (data) => {
-    //   console.log(data);
-    //   navigate("/diaries");
-    // };
+  const onResReceived = (data) => {
+    console.log(data);
+    navigate("/diaries");
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(inputs);
-    addPost();
-    //   .then((data) => {
-    //     console.log(data);
-    //   })
-    //   .catch((err) => console.log(err));
+    addPost(inputs)
+      .then((onResReceived) => {
+        alert("Post added")
+        console.log(onResReceived);
+      })
+      .catch((err) => console.log(err));
   };
 
   return (
