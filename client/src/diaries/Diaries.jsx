@@ -44,7 +44,7 @@ function Diaries() {
             id={item._id}
             location={item.location}
             title={item.title}
-            user={item.name} //cast error control
+            user={item.name} 
             key={index}
           />
         ))}

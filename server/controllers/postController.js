@@ -37,7 +37,7 @@ const addPost = async (req, res) => {
   let existingUser;
 
   try {
-    existingUser = await User.findById(user);
+    existingUser = await User.findById(user); //
   } catch (error) {
     return console.log(error);
   }
@@ -55,7 +55,7 @@ const addPost = async (req, res) => {
       image,
       location,
       date: new Date(`${date}`),
-      user,
+      user: user,
     });
 
     const session = await mongoose.startSession();

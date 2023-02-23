@@ -14,7 +14,7 @@ function AddPost() {
         location: data.location,
         image: data.image,
         date: data.date,
-        user: localStorage.getItem("userId"),
+        user: localStorage.getItem("userId")
       })
       .catch((err) => console.log(err));
     console.log(res);
