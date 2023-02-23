@@ -21,6 +21,8 @@ import { useState } from "react";
 
 const DiaryCard = (props) => {
   const [open, setOpen] = useState(false);
+  const [user, setUser] = useState();
+  const [userId, setUserId] = useState();
   const id = useParams().id;
   console.log(id);
 
@@ -33,18 +35,15 @@ const DiaryCard = (props) => {
     }
     return false;
   };
+
   console.log(isLoggedInUser());
 
   const handleDelete = async (id) => {
     await axios
       .delete(`http://localhost:4000/posts/${id}`)
       .catch((error) => console.log(error));
-      setOpen(true);
+    setOpen(true);
   };
-
-  // useEffect(() => {
-  //   isLoggedInUser();
-  // },[open])
 
   return (
     <Card className="main-card-box">
