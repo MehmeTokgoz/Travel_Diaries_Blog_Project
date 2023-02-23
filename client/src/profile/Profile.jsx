@@ -23,13 +23,12 @@ function Profile() {
     getUserDetails().then(
       axios.get(`http://localhost:4000/user/${userId}`).then(({ data }) => {
         setUser(data.user);
-        console.log(data.user);
       })
     );
   }, [userId]);
 
   function handleClick() {
-    localStorage.removeItem("token");
+    localStorage.clear();
     navigate("/");
   }
 
@@ -79,7 +78,7 @@ function Profile() {
             justifyContent="center"
             alignItems={"center"}
           >
-            {user.posts.map((post, index) => (
+           {user.posts.map((post, index) => (
               <DiaryCard
                 key={index}
                 title={post.title}
@@ -88,7 +87,7 @@ function Profile() {
                 id={post._id}
                 image={post.image}
                 location={post.location}
-                user={user._id}
+                user={post.user}
                 name={user.name}
               />
             ))}

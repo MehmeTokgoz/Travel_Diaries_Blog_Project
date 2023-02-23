@@ -18,6 +18,7 @@ function Diaries() {
         .then(({ data }) => setUserId(data._id));
     }
   }, []);
+  console.log("userId")
 
   useEffect(() => {
     axios.get("http://localhost:4000/posts/").then(({ data }) => {
@@ -28,6 +29,7 @@ function Diaries() {
 
         setPosts(userPosts);
         console.log(userPosts.map((item)=>item._id));
+        console.log(posts.map((item)=> item.user._id))
       }
     });
   }, [userId]);
@@ -41,11 +43,12 @@ function Diaries() {
             date={new Date(`${item.date}`).toLocaleDateString()}
             description={item.description}
             image={item.image}
-            id={item._id}
+            id={item.user._id}
             location={item.location}
             title={item.title}
-            user={item.name} 
+            user={item.name}
             key={index}
+            
           />
         ))}
     </Box>

@@ -55,7 +55,7 @@ const addPost = async (req, res) => {
       image,
       location,
       date: new Date(`${date}`),
-      user: user,
+      user:user
     });
 
     const session = await mongoose.startSession();

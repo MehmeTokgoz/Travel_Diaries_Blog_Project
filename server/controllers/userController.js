@@ -1,4 +1,3 @@
-const { hashSync, compareSync } = require("bcryptjs");
 const bcryptjs = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const User = require("../modules/User");

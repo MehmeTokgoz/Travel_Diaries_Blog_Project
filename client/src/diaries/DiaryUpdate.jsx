@@ -2,7 +2,7 @@ import axios from "axios";
 import { Button, FormLabel, TextField, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import React from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import TravelExploreIcon from "@mui/icons-material/TravelExplore";
 
@@ -18,6 +18,7 @@ function DiaryUpdate() {
   });
 
   const id = useParams().id;
+  const navigate = useNavigate();
 
   const getPostDetails = async (id) => {
     const res = await axios
@@ -80,6 +81,7 @@ function DiaryUpdate() {
       .then((data) => {
         console.log(data);
         alert("Post Updated");
+        navigate("/profile")
       })
       .catch((err) => {
         console.log(err);

@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useEffect } from "react";
+import axios from "axios";
 import {
   Avatar,
   Card,
@@ -9,13 +10,42 @@ import {
   Box,
   CardActions,
   Button,
+  Snackbar,
+  Alert,
 } from "@mui/material";
-import { Link } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import "./diaryCard.scss";
 // import diary1 from "../assets/1-Diary One1129244638-612x612.jpg";
 import PlaceIcon from "@mui/icons-material/Place";
+import { useState } from "react";
 
 const DiaryCard = (props) => {
+  const [open, setOpen] = useState(false);
+  const id = useParams().id;
+  console.log(id);
+
+  const isLoggedInUser = () => {
+    if (localStorage.getItem("token")) {
+      axios.post("http://localhost:4000/user/verify", {
+        token: localStorage.getItem("token"),
+      });
+      return true;
+    }
+    return false;
+  };
+  console.log(isLoggedInUser());
+
+  const handleDelete = async (id) => {
+    await axios
+      .delete(`http://localhost:4000/posts/${id}`)
+      .catch((error) => console.log(error));
+      setOpen(true);
+  };
+
+  // useEffect(() => {
+  //   isLoggedInUser();
+  // },[open])
+
   return (
     <Card className="main-card-box">
       <CardHeader
@@ -33,11 +63,11 @@ const DiaryCard = (props) => {
         title={props.location}
         location={props.location}
         date={props.date}
-        id = {props.id}
+        id={props.id}
         description={props.description}
         user={props.user}
       />
-      <img height="194" src={props.image} alt = {props.title}/>
+      <img height="194" src={props.image} alt={props.title} />
       <CardContent>
         <Typography className="card-info-header">
           {props.title} <br />
@@ -47,10 +77,27 @@ const DiaryCard = (props) => {
           <Typography>{props.description}</Typography>
         </Box>
       </CardContent>
-      <CardActions className="cardActions-buttons">
-        <Button  LinkComponent={Link} to={`/post/${props.id}`}>EDIT</Button>
-        <Button>DELETE</Button>
-      </CardActions>
+      {isLoggedInUser() && (
+        <CardActions className="cardActions-buttons">
+          <Button LinkComponent={Link} to={`/post/${props.id}`}>
+            EDIT
+          </Button>
+          <Button onClick={() => handleDelete(props.id)}>DELETE</Button>
+        </CardActions>
+      )}
+      <Snackbar
+        open={open}
+        autoHideDuration={3000}
+        onClose={() => setOpen(false)}
+      >
+        <Alert
+          onClose={() => setOpen(false)}
+          severity="success"
+          sx={{ width: "100%" }}
+        >
+          Post Deleted Successfully
+        </Alert>
+      </Snackbar>
     </Card>
   );
 };
