@@ -20,32 +20,51 @@ import PlaceIcon from "@mui/icons-material/Place";
 import { useState } from "react";
 
 const DiaryCard = (props) => {
+  const [user, setUser] = useState();
   const [open, setOpen] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userId, setUserId] = useState();
   const id = useParams().id;
   console.log(id);
-///////////////////ısLoggedIn control edilecek////////////////////////////
+
   const verifyUser = async () => {
     if (localStorage.getItem("token")) {
-     await axios
+      await axios
         .post("http://localhost:4000/user/verify", {
-          token: localStorage.getItem("token")
-        }).then(({data})=>{setUserId(data._id)})
-  }};
+          token: localStorage.getItem("token"),
+        })
+        .then(({ data }) => {
+          setUserId(data._id);
+        });
+        console.log(userId);
+    }
+  };
+
+  useEffect(() => {
+    verifyUser();
+}, [verifyUser])
+  console.log(user)
 
 
-  useEffect(()=> {
-    verifyUser().then(()=>{
-      if(userId) {
-        setIsLoggedIn(true)
-      } else {
-        setIsLoggedIn(false)
-      }
-    })
-  }, [verifyUser])
-  console.log(isLoggedIn)
 
+  // useEffect(() => {
+  //   verifyUser().then(() => {
+  //     if (userId) {
+  //       setIsLoggedIn(true);
+  //     } else {
+  //       setIsLoggedIn(false);
+  //     }
+  //   });
+  // }, [verifyUser]);
+  // console.log(isLoggedIn);
+
+  // const existingUser = async () => {
+  //   await axios.get(`http://localhost:4000/user/${userId}`).then(({ data }) => {
+  //     console.log(data)
+  //     setUser(data.user);
+  //   });
+  // };
+ 
 
   const handleDelete = async (id) => {
     await axios
@@ -58,11 +77,7 @@ const DiaryCard = (props) => {
     <Card className="main-card-box">
       <CardHeader
         className="diaryCardHeader"
-        avatar={
-          <Avatar className="avatar" aria-label="recipe">
-            MT
-          </Avatar>
-        }
+        avatar={<Avatar className="avatar" aria-label="recipe">MT</Avatar>}
         action={
           <IconButton aria-label="settings">
             <PlaceIcon />

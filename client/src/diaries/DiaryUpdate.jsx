@@ -144,7 +144,7 @@ function DiaryUpdate() {
               variant="standard"
               margin="normal"
             />
-            <FormLabel sx={{ fontFamily: "quicksand" }}>Date</FormLabel>
+            {/* <FormLabel sx={{ fontFamily: "quicksand" }}>Date</FormLabel>
           <TextField
             type="date"
             onChange={handleChange}
@@ -152,7 +152,7 @@ function DiaryUpdate() {
             value={inputs.date}
             variant="standard"
             margin="normal"
-          />
+          /> */}
 
             <Button
               type="submit"

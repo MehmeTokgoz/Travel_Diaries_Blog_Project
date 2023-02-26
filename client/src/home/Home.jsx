@@ -3,7 +3,7 @@ import axios from "axios";
 import { Box } from "@mui/system";
 import homeImage from "../assets/homeImage1.jpg";
 import "./home.scss";
-import { Button, Tabs, Typography } from "@mui/material";
+import { Button, Tabs, Tab, Typography, AppBar, Toolbar } from "@mui/material";
 import { Link, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 
@@ -33,15 +33,20 @@ function Home() {
       }
     });
   }, [verifyUser]);
+  console.log(isLoggedIn);
 
-
-  function shareStory () {
-    verifyUser().then(
-      isLoggedIn ? (
-        navigate("/add")
-      ):(navigate("/login"))
-    )
+  function shareStory() {
+    verifyUser();
+    isLoggedIn ? navigate("add"): navigate("login")
   }
+
+  // function shareStory () {
+  //   verifyUser().then(
+  //     isLoggedIn ? (
+  //       navigate("/add")
+  //     ):(navigate("/login"))
+  //   )
+  // }
 
   return (
     <Box className="main-box">

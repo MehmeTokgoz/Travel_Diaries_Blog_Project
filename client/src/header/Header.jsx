@@ -3,16 +3,17 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import { AppBar, Toolbar, Tabs, Tab } from "@mui/material";
 import "./header.scss";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import logo from "../assets/mt.jpg";
 
-const linksArr = ["home", "diaries", "profile", "add", "login"];
+const linksArr = ["home", "diaries", "profile", "add", "logout"];
 const loggedOutlinksArr = ["home", "diaries", "login"];
 
 function Header() {
   const [userId, setUserId] = useState();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [value, setValue] = useState(false);
+  const navigate = useNavigate();
 
   const verifyUser = async () => {
     if (localStorage.getItem("token")) {
