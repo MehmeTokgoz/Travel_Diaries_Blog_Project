@@ -21,10 +21,9 @@ import { useState } from "react";
 
 const DiaryCard = (props) => {
   const [open, setOpen] = useState(false);
-  const [user, setUser] = useState();
-  const [userId, setUserId] = useState();
   const id = useParams().id;
   console.log(id);
+
 
   const isLoggedInUser = () => {
     if (localStorage.getItem("token")) {
@@ -36,7 +35,7 @@ const DiaryCard = (props) => {
     return false;
   };
 
-  console.log(isLoggedInUser());  
+  console.log(isLoggedInUser());
 
   const handleDelete = async (id) => {
     await axios
@@ -76,6 +75,7 @@ const DiaryCard = (props) => {
           <Typography>{props.description}</Typography>
         </Box>
       </CardContent>
+
       {isLoggedInUser() && (
         <CardActions className="cardActions-buttons">
           <Button LinkComponent={Link} to={`/post/${props.id}`}>
