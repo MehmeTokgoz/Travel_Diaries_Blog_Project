@@ -1,4 +1,5 @@
 import { Route, Routes } from "react-router-dom";
+import axios from "axios";
 import { useEffect, useState } from "react";
 import "./App.scss";
 import Header from "./header/Header";
@@ -10,16 +11,37 @@ import AddPost from "./add/AddPost";
 import DiaryUpdate from "./diaries/DiaryUpdate";
 
 function App() {
-  const userId = localStorage.getItem("userId");
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState();
+  const [userId, setUserId] = useState();
 
   useEffect(() => {
+    if (localStorage.getItem("token")) {
+      axios
+        .post("http://localhost:4000/user/verify", {
+          token: localStorage.getItem("token"),
+        })
+        .then(({ data }) => setUserId(data._id))
+    }
+  }, []);
+
+  useEffect(() => {
+    
+    if (userId) {
+      setIsLoggedIn(true);
+    } else {
+      setIsLoggedIn(false);
+    }
+  }, [userId]);
+
+ /* useEffect(() => {
+    
     if (userId) {
       setIsLoggedIn(true);
     } else {
       setIsLoggedIn(false);
     }
   }, []);
+  */
 
   return (
     <div>
@@ -37,13 +59,15 @@ function App() {
               <Route path="/add" element={<AddPost />} />
               <Route path="/post/:id" element={<DiaryUpdate />} />
             </>
-          ) : (
+          )
+           : (
             <>
               <Route path="/" element={<Home />} />
               <Route path="/diaries" element={<Diaries />} />
               <Route path="/login" element={<Login />} />
             </>
-          )}
+           )
+          }
         </Routes>
       </section>
     </div>

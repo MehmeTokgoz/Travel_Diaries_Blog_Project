@@ -12,6 +12,7 @@ function Header() {
 
   const userId = localStorage.getItem("userId");
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [value, setValue] = useState(false);
 
   useEffect(() => {
     if (userId) {
@@ -21,7 +22,6 @@ function Header() {
     }
   }, []);
 
-  const [value, setValue] = useState(false);
   return (
     <div>
       {" "}
@@ -34,7 +34,7 @@ function Header() {
             onChange={(e, val) => setValue(val)}
           >
             {isLoggedIn
-              ? linksArr.map((link) => (
+              ? (linksArr.map((link) => (
                   <Tab
                     className="tab"
                     key={link}
@@ -42,8 +42,8 @@ function Header() {
                     LinkComponent={Link}
                     to={`/${link === "home" ? "" : link}`}
                   />
-                ))
-              : loggedOutlinksArr.map((link) => (
+                )))
+              : (loggedOutlinksArr.map((link) => (
                   <Tab
                     className="tab"
                     key={link}
@@ -51,7 +51,7 @@ function Header() {
                     LinkComponent={Link}
                     to={`/${link === "home" ? "" : link}`}
                   />
-                ))}
+                )))}
           </Tabs>
         </Toolbar>
       </AppBar>

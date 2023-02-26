@@ -19,6 +19,7 @@ function Home() {
       setIsLoggedIn(false);
     }
   }, []);
+  console.log(isLoggedIn)
 
 function shareStory () {
   isLoggedIn ? (
