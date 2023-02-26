@@ -12,7 +12,7 @@ import DiaryUpdate from "./diaries/DiaryUpdate";
 function App() {
   const userId = localStorage.getItem("userId");
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  
+
   useEffect(() => {
     if (userId) {
       setIsLoggedIn(true);

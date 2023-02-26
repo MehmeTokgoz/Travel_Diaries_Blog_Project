@@ -36,7 +36,7 @@ const DiaryCard = (props) => {
     return false;
   };
 
-  console.log(isLoggedInUser());
+  console.log(isLoggedInUser());  
 
   const handleDelete = async (id) => {
     await axios
