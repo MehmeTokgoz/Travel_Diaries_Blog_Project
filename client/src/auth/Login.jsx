@@ -99,4 +99,5 @@ function Login() {
   );
 }
 
+// module.exports = {Login, verifyUser}
 export default Login;

@@ -2,10 +2,35 @@ import axios from "axios";
 import { Box, Button, FormLabel, TextField, Typography } from "@mui/material";
 import TravelExploreIcon from "@mui/icons-material/TravelExplore";
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 function AddPost() {
+  const [userId, setUserId] = useState();
+  const [isLoggedIn, setIsLoggedIn] = useState();
+
+  const verifyUser = async () => {
+    if (localStorage.getItem("token")) {
+      await axios
+        .post("http://localhost:4000/user/verify", {
+          token: localStorage.getItem("token"),
+        })
+        .then(({ data }) => {
+          setUserId(data._id);
+        });
+    }
+  };
+
+  useEffect(() => {
+    verifyUser().then(() => {
+      if (userId) {
+        setIsLoggedIn(true);
+      } else {
+        setIsLoggedIn(false);
+      }
+    });
+  }, [verifyUser]);
+
   const addPost = async (data) => {
     const res = await axios
       .post("http://localhost:4000/posts/", {
@@ -14,8 +39,7 @@ function AddPost() {
         location: data.location,
         image: data.image,
         date: data.date,
-        user: localStorage.getItem("userId")
-      })
+        user: userId      })
       .catch((err) => console.log(err));
     console.log(res);
     if (res.status !== 201) {
@@ -53,8 +77,8 @@ function AddPost() {
     console.log(inputs);
     addPost(inputs)
       .then(() => {
-        navigate("/diaries")
-        alert("Post added")
+        navigate("/diaries");
+        alert("Post added");
         console.log(onResReceived);
       })
       .catch((err) => console.log(err));

@@ -7,9 +7,9 @@ import { useState, useEffect } from "react";
 import TravelExploreIcon from "@mui/icons-material/TravelExplore";
 
 function DiaryUpdate() {
-  const [userId, setUserId] = useState();
+  // const [userId, setUserId] = useState();
   const [post, setPost] = useState();
-  const [postId, setPostId] = useState();
+  // const [postId, setPostId] = useState();
   const [inputs, setInputs] = useState({
     title: "",
     description: "",

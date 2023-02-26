@@ -1,4 +1,5 @@
 import React from "react";
+import axios from "axios";
 import { useState, useEffect } from "react";
 import { AppBar, Toolbar, Tabs, Tab } from "@mui/material";
 import "./header.scss";
@@ -9,18 +10,28 @@ const linksArr = ["home", "diaries", "profile", "add", "login"];
 const loggedOutlinksArr = ["home", "diaries", "login"];
 
 function Header() {
-
-  const userId = localStorage.getItem("userId");
+  const [userId, setUserId] = useState();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [value, setValue] = useState(false);
 
-  useEffect(() => {
-    if (userId) {
-      setIsLoggedIn(true);
-    } else {
-      setIsLoggedIn(false);
-    }
-  }, []);
+  const verifyUser = async () => {
+    if (localStorage.getItem("token")) {
+     await axios
+        .post("http://localhost:4000/user/verify", {
+          token: localStorage.getItem("token")
+        }).then(({data})=>{setUserId(data._id)})
+  }};
+
+  useEffect(()=> {
+    verifyUser().then(()=>{
+      if(userId) {
+        setIsLoggedIn(true)
+      } else {
+        setIsLoggedIn(false)
+      }
+    })
+  }, [verifyUser])
+  console.log(isLoggedIn)
 
   return (
     <div>

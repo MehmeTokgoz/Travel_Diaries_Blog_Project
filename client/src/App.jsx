@@ -14,34 +14,44 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState();
   const [userId, setUserId] = useState();
 
-  useEffect(() => {
+  const verifyUser = async () => {
     if (localStorage.getItem("token")) {
-      axios
+     await axios
         .post("http://localhost:4000/user/verify", {
-          token: localStorage.getItem("token"),
-        })
-        .then(({ data }) => setUserId(data._id))
-    }
-  }, []);
+          token: localStorage.getItem("token")
+        }).then(({data})=>{setUserId(data._id)})
+  }};
 
-  useEffect(() => {
-    
-    if (userId) {
-      setIsLoggedIn(true);
-    } else {
-      setIsLoggedIn(false);
-    }
-  }, [userId]);
+  useEffect(()=> {
+    verifyUser().then(()=>{
+      if(userId) {
+        setIsLoggedIn(true)
+      } else {
+        setIsLoggedIn(false)
+      }
+    })
+  }, [verifyUser])
 
- /* useEffect(() => {
+
+
+  // useEffect(() => {
+  //   if (localStorage.getItem("token")) {
+  //     axios
+  //       .post("http://localhost:4000/user/verify", {
+  //         token: localStorage.getItem("token"),
+  //       })
+  //       .then(({ data }) => setUserId(data._id))
+  //   }
+  // }, []);
+
+  // useEffect(() => {
     
-    if (userId) {
-      setIsLoggedIn(true);
-    } else {
-      setIsLoggedIn(false);
-    }
-  }, []);
-  */
+  //   if (userId) {
+  //     setIsLoggedIn(true);
+  //   } else {
+  //     setIsLoggedIn(false);
+  //   }
+  // }, [userId]);
 
   return (
     <div>

@@ -21,21 +21,31 @@ import { useState } from "react";
 
 const DiaryCard = (props) => {
   const [open, setOpen] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [userId, setUserId] = useState();
   const id = useParams().id;
   console.log(id);
-
-
-  const isLoggedInUser = () => {
+///////////////////ısLoggedIn control edilecek////////////////////////////
+  const verifyUser = async () => {
     if (localStorage.getItem("token")) {
-      axios.post("http://localhost:4000/user/verify", {
-        token: localStorage.getItem("token"),
-      });
-      return true;
-    }
-    return false;
-  };
+     await axios
+        .post("http://localhost:4000/user/verify", {
+          token: localStorage.getItem("token")
+        }).then(({data})=>{setUserId(data._id)})
+  }};
 
-  console.log(isLoggedInUser());
+
+  useEffect(()=> {
+    verifyUser().then(()=>{
+      if(userId) {
+        setIsLoggedIn(true)
+      } else {
+        setIsLoggedIn(false)
+      }
+    })
+  }, [verifyUser])
+  console.log(isLoggedIn)
+
 
   const handleDelete = async (id) => {
     await axios
@@ -76,7 +86,7 @@ const DiaryCard = (props) => {
         </Box>
       </CardContent>
 
-      {isLoggedInUser() && (
+      {isLoggedIn && (
         <CardActions className="cardActions-buttons">
           <Button LinkComponent={Link} to={`/post/${props.id}`}>
             EDIT

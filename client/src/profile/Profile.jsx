@@ -12,6 +12,30 @@ function Profile() {
   const [posts, setPosts] = useState();
   const navigate = useNavigate();
 
+  const verifyUser = async () => {
+    if (localStorage.getItem("token")) {
+     await axios
+        .post("http://localhost:4000/user/verify", {
+          token: localStorage.getItem("token")
+        }).then(({data})=>{setUserId(data._id)})
+  }};
+
+  const userPosts = () => {
+    axios.get("http://localhost:4000/posts/").then(({ data }) => {
+      if (data) {
+        const posts = data.posts;
+        const userPosts = posts.filter((post) => post.user._id === userId);
+        setPosts(userPosts)
+  }})};
+
+  useEffect(() => {
+    verifyUser().then(
+      axios.get(`http://localhost:4000/user/${userId}`).then(({ data }) => {
+        setUser(data.user);
+      })
+    )
+  }, [verifyUser]);
+
   // useEffect(() => {
   //   if (localStorage.getItem("token")) {
   //     axios
@@ -22,35 +46,29 @@ function Profile() {
   //   }
   // }, []);
 
-  useEffect(() => {
-    axios.get("http://localhost:4000/posts/").then(({ data }) => {
-      if (data) {
-        const posts = data.posts;
-        const userPosts = posts.filter((post) => post.user._id === userId);
-        console.log(userPosts);
+  // useEffect(() => {
+  //   axios.get("http://localhost:4000/posts/").then(({ data }) => {
+  //     if (data) {
+  //       const posts = data.posts;
+  //       const userPosts = posts.filter((post) => post.user._id === userId);
+  //       console.log(userPosts);
 
-        setPosts(userPosts);
-        console.log(userPosts.map((item) => item._id));
-        console.log(posts.map((item) => item.user._id));
-      }
-    });
-  }, [userId]);
+  //       setPosts(userPosts);
+  //       console.log(userPosts.map((item) => item._id));
+  //       console.log(posts.map((item) => item.user._id));
+  //     }
+  //   });
+  // }, [userId]);
 
-  const getUserDetails = async () => {
-    await axios
-      .post("http://localhost:4000/user/verify", {
-        token: localStorage.getItem("token"),
-      })
-      .then(({ data }) => setUserId(data._id));
-  };
+  // const getUserDetails = async () => {
+  //   await axios
+  //     .post("http://localhost:4000/user/verify", {
+  //       token: localStorage.getItem("token"),
+  //     })
+  //     .then(({ data }) => setUserId(data._id));
+  // };
 
-  useEffect(() => {
-    getUserDetails().then(
-      axios.get(`http://localhost:4000/user/${userId}`).then(({ data }) => {
-        setUser(data.user);
-      })
-    );
-  }, [userId]);
+
 
   function handleClick() {
     localStorage.clear();
