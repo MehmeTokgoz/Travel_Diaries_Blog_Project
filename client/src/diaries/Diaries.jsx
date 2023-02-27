@@ -2,7 +2,6 @@ import axios from "axios";
 import { Box } from "@mui/material";
 import DiaryCard from "./DiaryCard";
 import React, { useEffect, useState } from "react";
-// import {getAllPosts} from "../apis/allApis";
 import "./diaries.scss";
 
 function Diaries() {

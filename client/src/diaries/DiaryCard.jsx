@@ -15,17 +15,17 @@ import {
 } from "@mui/material";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import "./diaryCard.scss";
-// import diary1 from "../assets/1-Diary One1129244638-612x612.jpg";
 import PlaceIcon from "@mui/icons-material/Place";
 import { useState } from "react";
 
 const DiaryCard = (props) => {
-  const [user, setUser] = useState();
   const [open, setOpen] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userId, setUserId] = useState();
-  const id = useParams().id;
-  console.log(id);
+
+  console.log(props.id);
+
+  
 
   const verifyUser = async () => {
     if (localStorage.getItem("token")) {
@@ -41,36 +41,22 @@ const DiaryCard = (props) => {
   };
 
   useEffect(() => {
-    verifyUser();
-}, [verifyUser])
-  console.log(user)
+    verifyUser().then(() => {
+      if (userId) {
+        setIsLoggedIn(true);
+      } else {
+        setIsLoggedIn(false);
+      }
+    });
+  }, [verifyUser]);
 
-
-
-  // useEffect(() => {
-  //   verifyUser().then(() => {
-  //     if (userId) {
-  //       setIsLoggedIn(true);
-  //     } else {
-  //       setIsLoggedIn(false);
-  //     }
-  //   });
-  // }, [verifyUser]);
-  // console.log(isLoggedIn);
-
-  // const existingUser = async () => {
-  //   await axios.get(`http://localhost:4000/user/${userId}`).then(({ data }) => {
-  //     console.log(data)
-  //     setUser(data.user);
-  //   });
-  // };
- 
 
   const handleDelete = async (id) => {
     await axios
       .delete(`http://localhost:4000/posts/${id}`)
       .catch((error) => console.log(error));
     setOpen(true);
+    window.location.reload(true);
   };
 
   return (

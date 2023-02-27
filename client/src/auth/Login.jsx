@@ -26,35 +26,26 @@ function Login() {
         password: data.password,
       })
       .then(({ data }) => {
-
         if (data.token) {
           localStorage.setItem("token", data.token);
           localStorage.setItem("userId", data.existingUser._id);
-          console.log(data)
+          console.log(data);
           navigate("/profile");
+          window.location.reload(true);
         }
       })
       .catch((error) => console.log(error));
-
-    // if (res.status !== 200 && res.status !== 201) {
-    //   return console.log("Authentication Failed");
-    // }
-    // const resData = await res.data;
-    // return resData;
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(inputs);
     if (isSignup) {
-      authRequest(true, inputs)
-        // .then((data) => console.log(data))
-        // .catch((error) => console.log(error));
+      authRequest(true, inputs);
+
       setIsSignup(false);
     } else {
-      authRequest(false, inputs)
-        // .then((data) => console.log({data}))
-        // .catch((error) => console.log(error));
+      authRequest(false, inputs);
     }
   };
 

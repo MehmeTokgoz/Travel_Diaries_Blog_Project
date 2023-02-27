@@ -64,7 +64,7 @@ function App() {
             <>
               <Route path="/" element={<Home />} />
               <Route path="/diaries" element={<Diaries />} />
-              <Route path="/login" element={<Login />} />
+              <Route path="/logout" element={<Login />} />
               <Route path="/profile" element={<Profile />} />
               <Route path="/add" element={<AddPost />} />
               <Route path="/post/:id" element={<DiaryUpdate />} />
