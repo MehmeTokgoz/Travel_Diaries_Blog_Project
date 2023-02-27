@@ -126,7 +126,7 @@ function Profile() {
                 id={post._id}
                 image={post.image}
                 location={post.location}
-                user={post.user}
+                user={posts.user}
                 name={post.user.name}
               />
             );

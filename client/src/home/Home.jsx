@@ -40,19 +40,14 @@ function Home() {
     isLoggedIn ? navigate("add"): navigate("login")
   }
 
-  // function shareStory () {
-  //   verifyUser().then(
-  //     isLoggedIn ? (
-  //       navigate("/add")
-  //     ):(navigate("/login"))
-  //   )
-  // }
-
   return (
     <Box className="main-box">
       <img className="homeimage" src={homeImage} alt="#" />
+      <Typography className="first-typography">Stay close to people who feel like sunshine</Typography>
       <Box className="footer-box">
-        <Typography>Share Your Diaries</Typography>
+      <Typography className="second-typography">
+            SHARE YOUR TRAVEL DIARIES WITH US
+          </Typography>
         <Box className="button-box">
           <Button onClick={shareStory}>Share Story</Button>
           <Button className="diary-button" LinkComponent={Link} to="/diaries">

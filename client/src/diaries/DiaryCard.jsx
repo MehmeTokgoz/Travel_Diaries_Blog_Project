@@ -16,16 +16,17 @@ import {
 import { Link, useNavigate, useParams } from "react-router-dom";
 import "./diaryCard.scss";
 import PlaceIcon from "@mui/icons-material/Place";
+import ModeEditOutlineIcon from "@mui/icons-material/ModeEditOutline";
+import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import { useState } from "react";
 
 const DiaryCard = (props) => {
   const [open, setOpen] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userId, setUserId] = useState();
+  const [user, setUser] = useState();
 
   console.log(props.id);
-
-  
 
   const verifyUser = async () => {
     if (localStorage.getItem("token")) {
@@ -35,8 +36,10 @@ const DiaryCard = (props) => {
         })
         .then(({ data }) => {
           setUserId(data._id);
+          setUser(data.name);
         });
-        console.log(userId);
+      console.log(userId);
+      console.log(user);
     }
   };
 
@@ -50,7 +53,6 @@ const DiaryCard = (props) => {
     });
   }, [verifyUser]);
 
-
   const handleDelete = async (id) => {
     await axios
       .delete(`http://localhost:4000/posts/${id}`)
@@ -63,7 +65,11 @@ const DiaryCard = (props) => {
     <Card className="main-card-box">
       <CardHeader
         className="diaryCardHeader"
-        avatar={<Avatar className="avatar" aria-label="recipe">MT</Avatar>}
+        avatar={
+          <Avatar className="avatar" aria-label="recipe">
+            MT
+          </Avatar>
+        }
         action={
           <IconButton aria-label="settings">
             <PlaceIcon />
@@ -89,11 +95,20 @@ const DiaryCard = (props) => {
 
       {isLoggedIn && (
         <CardActions className="cardActions-buttons">
-          <Button LinkComponent={Link} to={`/post/${props.id}`}>
-            EDIT
-          </Button>
-          <Button onClick={() => handleDelete(props.id)}>DELETE</Button>
+          <IconButton className="edit-icon" LinkComponent={Link} to={`/post/${props.id}`}>
+            <ModeEditOutlineIcon />
+          </IconButton>
+          <IconButton onClick={() => handleDelete(props.id)} >
+            <DeleteForeverIcon/>
+          </IconButton>
         </CardActions>
+
+        // <CardActions className="cardActions-buttons">
+        //   <Button LinkComponent={Link} to={`/post/${props.id}`}>
+        //     EDIT
+        //   </Button>
+        //   <Button onClick={() => handleDelete(props.id)}>DELETE</Button>
+        // </CardActions>
       )}
       <Snackbar
         open={open}

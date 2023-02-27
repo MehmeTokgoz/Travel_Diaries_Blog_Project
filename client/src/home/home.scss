@@ -1,29 +1,59 @@
-$main-color: rgb(39, 98, 209);
+$main-color: rgb(143, 21, 173);
+
+
 .main-box {
     position: relative;
     width: 100%;
     height: 100vh;
+    // background: linear-gradient(90deg, hsla(339, 100%, 55%, 1) 0%, hsla(197, 100%, 64%, 1) 100%);
+
 
     img {
+
+        margin: 3%;
         width: 100%;
         height: 80vh;
     }
 
+    .first-typography {
+        font-family: 'Dancing Script', cursive;
+        font-size: 50px;
+        font-weight: bolder;
+        text-align: center;
+        width: 100%;
+        position: absolute;
+        top: 5%;
+        color: #e9e9e9de;
+        background: #b2c8df;
+        background-color: transparent;
+    }
+
+    .second-typography {
+        font-family: cursive;
+        font-size: 20px;
+        text-align: center;
+        padding: 0px;
+        margin: -10% auto;
+        color: #e9e9e9de;
+
+
+    }
+
     .button-box {
         Button {
-            color: black;
+            color: #e9e9e9de;
             box-sizing: border-box;
             background-color: $main-color;
             margin: 2%;
         }
+
+        Button:hover {
+            background-color: rgb(180, 66, 66);
+        }
+
         .diary-button {
             @extend Button
         }
     }
 
 }
-
-
-
-
-

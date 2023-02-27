@@ -4,6 +4,7 @@ import TravelExploreIcon from "@mui/icons-material/TravelExplore";
 import React from "react";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import "../add/addPost.scss"
 
 function AddPost() {
   const [userId, setUserId] = useState();
@@ -85,7 +86,7 @@ function AddPost() {
   };
 
   return (
-    <Box display="flex" flexDirection={"column"} width="100%" height="100%">
+    <Box display="flex" flexDirection={"column"} width="100%" height="100%" className="main-box">
       <Box display="flex" margin="auto" padding={2}>
         <Typography
           fontWeight={"bold"}
