@@ -62,7 +62,7 @@ const DiaryCard = (props) => {
   };
 
   return (
-    <Card className="main-card-box">
+    <Card id="main-card-box">
       <CardHeader
         className="diaryCardHeader"
         avatar={
@@ -91,9 +91,7 @@ const DiaryCard = (props) => {
         <Box>
           <Typography>{props.description}</Typography>
         </Box>
-      </CardContent>
-
-      {isLoggedIn && (
+        {isLoggedIn && (
         <CardActions className="cardActions-buttons">
           <IconButton className="edit-icon" LinkComponent={Link} to={`/post/${props.id}`}>
             <ModeEditOutlineIcon />
@@ -110,6 +108,8 @@ const DiaryCard = (props) => {
         //   <Button onClick={() => handleDelete(props.id)}>DELETE</Button>
         // </CardActions>
       )}
+      </CardContent>
+
       <Snackbar
         open={open}
         autoHideDuration={3000}

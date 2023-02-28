@@ -41,7 +41,7 @@ function Header() {
   const handleLogout = (e, val) => {
     setValue(val);
     if (val === 4) {
-      alert("olacak");
+      alert("Log out successful")
       navigate("/");
       localStorage.clear();
       window.location.reload(true);
@@ -60,7 +60,7 @@ function Header() {
             {isLoggedIn
               ? linksArr.map((link) => (
                   <Tab
-                    className="tab"
+                    id="tab"
                     key={link}
                     label={link}
                     LinkComponent={Link}
@@ -69,7 +69,7 @@ function Header() {
                 ))
               : loggedOutlinksArr.map((link) => (
                   <Tab
-                    className="tab"
+                    id="tab"
                     key={link}
                     label={link}
                     LinkComponent={Link}

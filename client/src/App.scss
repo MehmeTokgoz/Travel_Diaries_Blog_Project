@@ -3,6 +3,11 @@
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  // background: linear-gradient(90deg, hsla(152, 100%, 50%, 1) 0%, hsla(186, 100%, 69%, 1) 100%);
+      // background: linear-gradient(90deg, hsla(245, 54%, 54%, 1) 38%, hsla(225, 83%, 44%, 1) 100%);
+      background: linear-gradient(90deg, hsla(217, 62%, 57%, 1) 52%, hsla(225, 83%, 44%, 1) 100%);
 }
 
 @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&display=swap');

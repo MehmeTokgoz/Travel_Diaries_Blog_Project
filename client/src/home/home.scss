@@ -8,9 +8,10 @@ $main-color: rgb(143, 21, 173);
     // background: linear-gradient(90deg, hsla(339, 100%, 55%, 1) 0%, hsla(197, 100%, 64%, 1) 100%);
 
 
-    img {
-
-        margin: 3%;
+    .homeimage {
+display: flex;
+margin: 4% auto;
+        // margin: 3%;
         width: 100%;
         height: 80vh;
     }
@@ -26,6 +27,8 @@ $main-color: rgb(143, 21, 173);
         color: #e9e9e9de;
         background: #b2c8df;
         background-color: transparent;
+        text-shadow: 2px 2px 4px;
+        
     }
 
     .second-typography {
@@ -35,6 +38,7 @@ $main-color: rgb(143, 21, 173);
         padding: 0px;
         margin: -10% auto;
         color: #e9e9e9de;
+        text-shadow: 2px 2px 4px;
 
 
     }

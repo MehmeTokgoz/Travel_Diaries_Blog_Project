@@ -5,6 +5,7 @@ import DiaryCard from "../diaries/DiaryCard";
 import { Button, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import { useNavigate, useParams } from "react-router-dom";
+import "../profile/profile.scss";
 
 function Profile() {
   const [user, setUser] = useState();
@@ -72,10 +73,11 @@ function Profile() {
 
   return (
     <>
-      <Box display="flex" flexDirection={"column"}>
+      <Box className="profile-info-container">
         {user && (
           <>
             <Typography
+              className="user-profile"
               textAlign={"center"}
               variant="h3"
               fontFamily={"quicksand"}
@@ -110,6 +112,7 @@ function Profile() {
         )}
       </Box>
       <Box
+        className="diary-container"
         display="flex"
         flexDirection={"column"}
         justifyContent="center"
