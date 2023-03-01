@@ -53,7 +53,7 @@ function Login() {
     <Box>
       <form onSubmit={handleSubmit}>
         <Box className="form-box">
-          <Typography>{isSignup ? "Signup" : "Login"}</Typography>
+          <Typography className="signup-login">{isSignup ? "SIGNUP" : "LOGIN"}</Typography>
           {isSignup && (
             <>
               <FormLabel>Name</FormLabel>

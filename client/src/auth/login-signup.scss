@@ -5,11 +5,14 @@ $main-color: rgb(39, 98, 209);
     flex-direction: column;
     box-sizing: border-box;
     justify-content: center;
-    border: 2px solid black;
+    // border: 2px solid black;
+    box-shadow: 5px 5px 10px rgb(252, 118, 118);
+    border-radius: 10px;
     padding: 5px;
     height: 60vh;
     width: 30%;
-    margin: 3rem auto;
+    margin: 6rem auto;
+    background: linear-gradient(90deg, hsla(0, 3%, 83%, 1) 12%, hsla(321, 32%, 91%, 1) 64%, hsla(190, 17%, 93%, 1) 97%);
 
     .submit-button {
         color: white;
@@ -18,6 +21,11 @@ $main-color: rgb(39, 98, 209);
     }
     .submit-button:hover {
         background-color: $main-color;
+    }
+
+    .signup-login {
+        color: white;
+        background: linear-gradient(90deg, hsla(217, 62%, 57%, 1) 52%, hsla(225, 83%, 44%, 1) 100%);
     }
   
         

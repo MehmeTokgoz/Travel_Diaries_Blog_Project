@@ -77,13 +77,13 @@ function Profile() {
         {user && (
           <>
             <Typography
-              className="user-profile"
+              id="user-profile"
               textAlign={"center"}
               variant="h3"
               fontFamily={"quicksand"}
               padding={2}
             >
-              User Profile
+              USER PROFILE
             </Typography>
             <Typography fontFamily={"quicksand"} padding={1} textAlign="left">
               Name: {user.name}
@@ -100,7 +100,7 @@ function Profile() {
               Logout
             </Button>{" "} */}
             <br />
-            <Button
+            <Button className="addNew-button"
               onClick={addNewPost}
               sx={{ mr: "auto", width: "15%" }}
               color="warning"
@@ -112,7 +112,7 @@ function Profile() {
         )}
       </Box>
       <Box
-        className="diary-container"
+        id="diary-container"
         display="flex"
         flexDirection={"column"}
         justifyContent="center"
