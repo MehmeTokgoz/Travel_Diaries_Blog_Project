@@ -58,7 +58,7 @@ const DiaryCard = (props) => {
       .delete(`http://localhost:4000/posts/${id}`)
       .catch((error) => console.log(error));
     setOpen(true);
-    window.location.reload(true);
+    // window.location.reload(true);
   };
 
   return (

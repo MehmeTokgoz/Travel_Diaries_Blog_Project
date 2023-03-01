@@ -9,32 +9,36 @@ import "../profile/profile.scss";
 
 function Profile() {
   const [user, setUser] = useState();
-  const [userId, setUserId] = useState("");
+  const [userId, setUserId] = useState(localStorage.getItem("userId"));
   const [posts, setPosts] = useState([]);
   const [userPosts, setUserPosts] = useState([]);
   const navigate = useNavigate();
 
-  const verifyUser = async () => {
-    if (localStorage.getItem("token")) {
-      await axios
-        .post("http://localhost:4000/user/verify", {
-          token: localStorage.getItem("token"),
-        })
-        .then(({ data }) => {
-          setUserId(data._id);
-        });
-    }
-  };
 
-  const getUserInfo = () => {
-    axios.get(`http://localhost:4000/user/${userId}`).then(({ data }) => {
-      setUser(data.user);
-    });
-  };
+  // const verifyUser = async () => {
+  //   if (localStorage.getItem("token")) {
+  //     await axios
+  //       .post("http://localhost:4000/user/verify", {
+  //         token: localStorage.getItem("token"),
+  //       })
+  //       .then(({ data }) => {
+  //         setUserId(data._id);
+  //       });
+  //   }
+  // };
 
-  useEffect(() => {
-    getUserInfo();
-  }, [userId]);
+  const getUserInfo = async () => {
+  await axios.get(`http://localhost:4000/user/${userId}`).then(({ data }) => {
+        setUser(data.user);
+      });
+    };
+  
+    useEffect(() => {
+      getUserInfo();
+    }, [userId]);
+
+
+  console.log(user)
 
   const getAllPosts = async () => {
     await axios.get("http://localhost:4000/posts/").then(({ data }) => {
@@ -54,7 +58,7 @@ function Profile() {
 
   useEffect(() => {
     getAllPosts();
-    verifyUser();
+    // verifyUser();
   }, []);
 
   useEffect(() => {

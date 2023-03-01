@@ -14,6 +14,7 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState();
   const [userId, setUserId] = useState();
 
+
   const verifyUser = async () => {
     if (localStorage.getItem("token")) {
      await axios
@@ -31,27 +32,7 @@ function App() {
       }
     })
   }, [verifyUser])
-
-
-
-  // useEffect(() => {
-  //   if (localStorage.getItem("token")) {
-  //     axios
-  //       .post("http://localhost:4000/user/verify", {
-  //         token: localStorage.getItem("token"),
-  //       })
-  //       .then(({ data }) => setUserId(data._id))
-  //   }
-  // }, []);
-
-  // useEffect(() => {
-    
-  //   if (userId) {
-  //     setIsLoggedIn(true);
-  //   } else {
-  //     setIsLoggedIn(false);
-  //   }
-  // }, [userId]);
+  console.log(isLoggedIn)
 
   return (
     <div>

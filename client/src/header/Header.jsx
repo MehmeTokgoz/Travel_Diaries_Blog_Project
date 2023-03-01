@@ -11,7 +11,7 @@ const linksArr = ["home", "diaries", "profile", "add", "logout"];
 const loggedOutlinksArr = ["home", "diaries", "login"];
 function Header() {
   const [userId, setUserId] = useState();
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState();
   const [value, setValue] = useState(false);
   const navigate = useNavigate();
 
@@ -40,13 +40,14 @@ function Header() {
 
   const handleLogout = (e, val) => {
     setValue(val);
+    setIsLoggedIn(false);
     if (val === 4) {
-      alert("Log out successful")
+      alert("Log out successful");
       navigate("/");
       localStorage.clear();
-      window.location.reload(true);
+      // window.location.reload(true);
     }
-    console.log(val);
+    // console.log(val);
   };
 
   return (
@@ -64,7 +65,7 @@ function Header() {
                     key={link}
                     label={link}
                     LinkComponent={Link}
-                    to={`/${link === "home" ? "" : link}`}
+                    to={`/${link === "home" ? "" : link === "logout" ? "" : link}`}
                   />
                 ))
               : loggedOutlinksArr.map((link) => (

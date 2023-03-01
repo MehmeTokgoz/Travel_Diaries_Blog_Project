@@ -7,8 +7,8 @@ import "./login-signup.scss";
 
 function Login() {
   const [isSignup, setIsSignup] = useState(false);
+  const [userId, setUserId] = useState("");
   const [inputs, setInputs] = useState({ name: "", email: "", password: "" });
-
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -30,12 +30,18 @@ function Login() {
           localStorage.setItem("token", data.token);
           localStorage.setItem("userId", data.existingUser._id);
           console.log(data);
-          navigate("/profile");
-          window.location.reload(true);
+          console.log(1)
+          navigate("/profile")
+          // window.location.reload(true);
         }
       })
       .catch((error) => console.log(error));
   };
+
+  // setUserId(localStorage.getItem("userId"));
+  // if (userId) {
+  //   navigate("/profile");
+  // }
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -53,7 +59,9 @@ function Login() {
     <Box>
       <form onSubmit={handleSubmit}>
         <Box className="form-box">
-          <Typography className="signup-login">{isSignup ? "SIGNUP" : "LOGIN"}</Typography>
+          <Typography className="signup-login">
+            {isSignup ? "SIGNUP" : "LOGIN"}
+          </Typography>
           {isSignup && (
             <>
               <FormLabel>Name</FormLabel>
