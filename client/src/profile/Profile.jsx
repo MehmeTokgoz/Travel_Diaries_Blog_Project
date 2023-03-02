@@ -56,6 +56,15 @@ function Profile() {
 
   console.log(userPosts);
 
+  
+  // useEffect(() => {
+  //   getAllPosts();
+  //   getUserPosts();
+  //   // verifyUser();
+  // }, [posts]);
+  
+  
+  
   useEffect(() => {
     getAllPosts();
     // verifyUser();

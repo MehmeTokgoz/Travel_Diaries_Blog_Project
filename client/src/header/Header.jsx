@@ -40,14 +40,15 @@ function Header() {
 
   const handleLogout = (e, val) => {
     setValue(val);
-    setIsLoggedIn(false);
     if (val === 4) {
       alert("Log out successful");
-      navigate("/");
       localStorage.clear();
+      navigate("/");
+ 
+      // setIsLoggedIn(false)
       // window.location.reload(true);
     }
-    // console.log(val);
+    console.log(isLoggedIn)
   };
 
   return (
