@@ -11,28 +11,6 @@ import AddPost from "./add/AddPost";
 import DiaryUpdate from "./diaries/DiaryUpdate";
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState();
-  const [userId, setUserId] = useState();
-
-
-  const verifyUser = async () => {
-    if (localStorage.getItem("token")) {
-     await axios
-        .post("http://localhost:4000/user/verify", {
-          token: localStorage.getItem("token")
-        }).then(({data})=>{setUserId(data._id)})
-  }};
-
-  useEffect(()=> {
-    verifyUser().then(()=>{
-      if(userId) {
-        setIsLoggedIn(true)
-      } else {
-        setIsLoggedIn(false)
-      }
-    })
-  }, [verifyUser])
-  console.log(isLoggedIn)
 
   return (
     <div>
@@ -40,6 +18,28 @@ function App() {
         <Header />
       </header>
       <section>
+        <Routes>
+            <>
+              <Route path="/" element={<Home />} />
+              <Route path="/diaries" element={<Diaries />} />
+              <Route path="/logout" element={<Login />} />
+              <Route path="/profile" element={<Profile />} />
+              <Route path="/add" element={<AddPost />} />
+              <Route path="/post/:id" element={<DiaryUpdate />} />
+            </>
+            <>
+              <Route path="/" element={<Home />} />
+              <Route path="/diaries" element={<Diaries />} />
+              <Route path="/login" element={<Login />} />
+            </>
+        </Routes>
+      </section>
+
+
+
+
+
+      {/* <section>
         <Routes>
           {isLoggedIn ? (
             <>
@@ -60,7 +60,7 @@ function App() {
            )
           }
         </Routes>
-      </section>
+      </section> */}
     </div>
   );
 }
