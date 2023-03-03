@@ -44,7 +44,7 @@ function Header() {
       alert("Log out successful");
       localStorage.clear();
       navigate("/");
- 
+      setUserId("");
       // setIsLoggedIn(false)
       // window.location.reload(true);
     }
