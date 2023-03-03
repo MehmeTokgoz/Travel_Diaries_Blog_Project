@@ -58,29 +58,30 @@ function Login() {
   return (
     <Box>
       <form onSubmit={handleSubmit}>
+
         <Box className="form-box">
-          <Typography className="signup-login">
+        <Typography className="signup-login">
             {isSignup ? "SIGNUP" : "LOGIN"}
           </Typography>
           {isSignup && (
             <>
-              <FormLabel>Name</FormLabel>
-              <TextField
+              <FormLabel className="form-labels" >Name</FormLabel>
+              <TextField id="input-text-field1"
                 value={inputs.name}
                 name="name"
                 onChange={handleChange}
               />
             </>
           )}
-          <FormLabel>Email</FormLabel>
-          <TextField
+          <FormLabel className="form-labels">Email</FormLabel>
+          <TextField id="input-text-field2"
             value={inputs.email}
             type="email"
             name="email"
             onChange={handleChange}
           />
-          <FormLabel>Password</FormLabel>
-          <TextField
+          <FormLabel className="form-labels">Password</FormLabel>
+          <TextField id="input-text-field3"
             value={inputs.password}
             type="password"
             name="password"

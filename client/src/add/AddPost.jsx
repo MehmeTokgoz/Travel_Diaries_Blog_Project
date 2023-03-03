@@ -4,7 +4,7 @@ import TravelExploreIcon from "@mui/icons-material/TravelExplore";
 import React from "react";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import "../add/addPost.scss"
+import "../add/addPost.scss";
 
 function AddPost() {
   const [userId, setUserId] = useState();
@@ -40,7 +40,8 @@ function AddPost() {
         location: data.location,
         image: data.image,
         date: data.date,
-        user: userId      })
+        user: userId,
+      })
       .catch((err) => console.log(err));
     console.log(res);
     if (res.status !== 201) {
@@ -86,81 +87,132 @@ function AddPost() {
   };
 
   return (
-    <Box display="flex" flexDirection={"column"} width="100%" height="100%" className="main-box">
-      <Box display="flex" margin="auto" padding={2}>
-        <Typography
-          fontWeight={"bold"}
-          variant="h4"
-          fontFamily={"dancing script"}
-        >
+    <Box className="main-box">
+      <Box className="title-icon-box">
+        <Typography className="add-travel-text">
           Add Your Travel Diary
         </Typography>
-        <TravelExploreIcon
-          sx={{ fontSize: "40px", paddingLeft: 1, color: "lightcoral  " }}
-        />
+        <TravelExploreIcon className="travel-icon" />
       </Box>
       <form onSubmit={handleSubmit}>
-        <Box
-          padding={3}
-          display="flex"
-          width="80%"
-          margin="auto"
-          flexDirection={"column"}
-        >
-          <FormLabel sx={{ fontFamily: "quicksand" }}>Title</FormLabel>
+        <Box className="inputs-name-box">
+          <Box className="title-date-box">
+            <Box className= "title-box">
+              <FormLabel className="form-labels">Title</FormLabel>
+              <TextField
+                className="input-text-fields"
+                onChange={handleChange}
+                name="title"
+                value={inputs.title}
+                variant="outlined"
+              />
+            </Box>
+            <Box className= "date-box">
+            <FormLabel className="form-labels">Date</FormLabel>
+              <TextField
+                className="input-text-fields"
+                type="date"
+                onChange={handleChange}
+                name="date"
+                value={inputs.date}
+                variant="outlined"
+              />
+            </Box>
+          </Box>
+
+          <FormLabel className="form-labels">Description</FormLabel>
           <TextField
-            onChange={handleChange}
-            name="title"
-            value={inputs.title}
-            variant="standard"
-            margin="normal"
-          />
-          <FormLabel sx={{ fontFamily: "quicksand" }}>Description</FormLabel>
-          <TextField
+            className="input-text-fields"
             onChange={handleChange}
             name="description"
             value={inputs.description}
-            variant="standard"
-            margin="normal"
+            variant="outlined"
           />
-          <FormLabel sx={{ fontFamily: "quicksand" }}>Image URL</FormLabel>
+          <FormLabel className="form-labels">Image URL</FormLabel>
           <TextField
+            className="input-text-fields"
             onChange={handleChange}
             name="image"
             value={inputs.image}
-            variant="standard"
-            margin="normal"
+            variant="outlined"
           />
 
-          <FormLabel sx={{ fontFamily: "quicksand" }}>Location</FormLabel>
+          <FormLabel className="form-labels">Location</FormLabel>
           <TextField
+            className="input-text-fields"
             onChange={handleChange}
             name="location"
             value={inputs.location}
-            variant="standard"
-            margin="normal"
+            variant="outlined"
           />
-          <FormLabel sx={{ fontFamily: "quicksand" }}>Date</FormLabel>
-          <TextField
-            type="date"
-            onChange={handleChange}
-            name="date"
-            value={inputs.date}
-            variant="standard"
-            margin="normal"
-          />
-          <Button
-            type="submit"
-            color="warning"
-            sx={{ width: "50%", margin: "auto", mt: 2, borderRadius: 7 }}
-            variant="contained"
-          >
+
+          <Button className="post-button" type="submit" variant="contained">
             Post
           </Button>
         </Box>
       </form>
     </Box>
   );
+
+  // return (
+  //   <Box className="main-box">
+  //     <Box className="title-icon-box">
+  //       <Typography className="add-travel-text">
+  //         Add Your Travel Diary
+  //       </Typography>
+  //       <TravelExploreIcon className="travel-icon" />
+  //     </Box>
+  //     <form onSubmit={handleSubmit}>
+  //       <Box className="inputs-name-box">
+  //         <FormLabel className="form-labels">Title</FormLabel>
+  //         <TextField
+  //           className="input-text-fields"
+  //           onChange={handleChange}
+  //           name="title"
+  //           value={inputs.title}
+  //           variant="outlined"
+  //         />
+  //         <FormLabel className="form-labels">Description</FormLabel>
+  //         <TextField
+  //           className="input-text-fields"
+  //           onChange={handleChange}
+  //           name="description"
+  //           value={inputs.description}
+  //           variant="outlined"
+  //         />
+  //         <FormLabel className="form-labels">Image URL</FormLabel>
+  //         <TextField
+  //           className="input-text-fields"
+  //           onChange={handleChange}
+  //           name="image"
+  //           value={inputs.image}
+  //           variant="outlined"
+  //         />
+
+  //         <FormLabel className="form-labels">Location</FormLabel>
+  //         <TextField
+  //           className="input-text-fields"
+  //           onChange={handleChange}
+  //           name="location"
+  //           value={inputs.location}
+  //           variant="outlined"
+  //         />
+  //         <FormLabel className="form-labels">Date</FormLabel>
+  //         <TextField
+  //           className="input-text-fields"
+  //           type="date"
+  //           onChange={handleChange}
+  //           name="date"
+  //           value={inputs.date}
+  //           variant="outlined"
+  //         />
+  //         <Button className="post-button" type="submit" variant="contained">
+  //           Post
+  //         </Button>
+  //       </Box>
+  //     </form>
+  //   </Box>
+  // );
 }
 
 export default AddPost;
