@@ -25,6 +25,8 @@ const DiaryCard = (props) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userId, setUserId] = useState();
   const [user, setUser] = useState();
+  const [posts, setPosts] = useState([]);
+  const [userPosts, setUserPosts] = useState([]);
 
   console.log(props.id);
 
@@ -53,13 +55,16 @@ const DiaryCard = (props) => {
     });
   }, [verifyUser]);
 
+  ///////////////////////////
+
+  ///////////////////////////
+
   const handleDelete = async (id) => {
     await axios
       .delete(`http://localhost:4000/posts/${id}`)
       .catch((error) => console.log(error));
     setOpen(true);
-
-    console.log(id)
+    console.log(id);
     // window.location.reload(true);
   };
 
@@ -68,8 +73,8 @@ const DiaryCard = (props) => {
       <CardHeader
         className="diaryCardHeader"
         avatar={
-          <Avatar className="avatar" aria-label="recipe">
-            MT
+          <Avatar className="avatar" aria-label="recipe">        
+            {props.name}
           </Avatar>
         }
         action={
@@ -94,22 +99,26 @@ const DiaryCard = (props) => {
           <Typography>{props.description}</Typography>
         </Box>
         {isLoggedIn && (
-        <CardActions className="cardActions-buttons">
-          <IconButton className="edit-icon" LinkComponent={Link} to={`/post/${props.id}`}>
-            <ModeEditOutlineIcon />
-          </IconButton>
-          <IconButton onClick={() => handleDelete(props.id)} >
-            <DeleteForeverIcon/>
-          </IconButton>
-        </CardActions>
+          <CardActions className="cardActions-buttons">
+            <IconButton
+              className="edit-icon"
+              LinkComponent={Link}
+              to={`/post/${props.id}`}
+            >
+              <ModeEditOutlineIcon />
+            </IconButton>
+            <IconButton onClick={() => handleDelete(props.id)}>
+              <DeleteForeverIcon />
+            </IconButton>
+          </CardActions>
 
-        // <CardActions className="cardActions-buttons">
-        //   <Button LinkComponent={Link} to={`/post/${props.id}`}>
-        //     EDIT
-        //   </Button>
-        //   <Button onClick={() => handleDelete(props.id)}>DELETE</Button>
-        // </CardActions>
-      )}
+          // <CardActions className="cardActions-buttons">
+          //   <Button LinkComponent={Link} to={`/post/${props.id}`}>
+          //     EDIT
+          //   </Button>
+          //   <Button onClick={() => handleDelete(props.id)}>DELETE</Button>
+          // </CardActions>
+        )}
       </CardContent>
 
       <Snackbar

@@ -31,6 +31,7 @@ function Diaries() {
             title={item.title}
             user={item.name}
             key={index}
+            name = {item.user.name.charAt(0)}
           />
         ))}
     </Box>

@@ -143,12 +143,12 @@ function Profile() {
                 image={post.image}
                 location={post.location}
                 user={posts.user}
-                name={post.user.name}
+                name={post.user.name.charAt(0)}
               />
             );
           })
         ) : (
-          <p>Nothing to Display</p>
+          <p>You haven't any post</p>
         )}
       </Box>
     </>
