@@ -89,7 +89,8 @@ function Profile() {
       <Box className="profile-info-container">
         {user && (
           <>
-            <Typography
+          <Box className="profile-info-box">
+          <Typography
               id="user-profile"
               textAlign={"center"}
               variant="h3"
@@ -113,14 +114,16 @@ function Profile() {
               Logout
             </Button>{" "} */}
             <br />
-            <Button className="addNew-button"
+            <Button id="addNew-button"
               onClick={addNewPost}
               sx={{ mr: "auto", width: "15%" }}
-              color="warning"
+
               variant="contained"
             >
               Add New Post
             </Button>{" "}
+          </Box>
+            
           </>
         )}
       </Box>

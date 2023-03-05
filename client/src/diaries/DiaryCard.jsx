@@ -12,6 +12,7 @@ import {
   Button,
   Snackbar,
   Alert,
+  AlertTitle,
 } from "@mui/material";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import "./diaryCard.scss";
@@ -21,7 +22,14 @@ import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import { useState } from "react";
 
 const DiaryCard = (props) => {
-  const [open, setOpen] = useState(false);
+  const [alertPosition, setAlertPosition] = useState({
+    open:false,
+    vertical: "top",
+    horizontal:"center"
+  })
+  const { vertical, horizontal, open } = alertPosition;
+
+  // const [open, setOpen] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userId, setUserId] = useState();
   const [user, setUser] = useState();
@@ -59,11 +67,12 @@ const DiaryCard = (props) => {
 
   ///////////////////////////
 
-  const handleDelete = async (id) => {
+  const handleDelete = async (id, newState) => {
     await axios
       .delete(`http://localhost:4000/posts/${id}`)
       .catch((error) => console.log(error));
-    setOpen(true);
+      setAlertPosition({open: true, ...newState})
+    // setOpen(true);
     console.log(id);
     // window.location.reload(true);
   };
@@ -107,7 +116,8 @@ const DiaryCard = (props) => {
             >
               <ModeEditOutlineIcon />
             </IconButton>
-            <IconButton onClick={() => handleDelete(props.id)}>
+            <IconButton onClick={()=> handleDelete(props.id, {vertical:"top", horizontal:"right"})}>
+            {/* <IconButton onClick={() => handleDelete(props.id)}> */}
               <DeleteForeverIcon />
             </IconButton>
           </CardActions>
@@ -124,13 +134,18 @@ const DiaryCard = (props) => {
       <Snackbar
         open={open}
         autoHideDuration={3000}
-        onClose={() => setOpen(false)}
+        onClose={()=> setAlertPosition({...alertPosition, open: false})}
+        // onClose={() => setOpen(false)}
+        anchorOrigin={{ vertical, horizontal }}
       >
-        <Alert
-          onClose={() => setOpen(false)}
+        <Alert id="alert"
+          onClose={() => setAlertPosition({...alertPosition, open: false})}
           severity="success"
           sx={{ width: "100%" }}
+          
+          
         >
+          <AlertTitle>SUCCESS</AlertTitle>
           Post Deleted Successfully
         </Alert>
       </Snackbar>

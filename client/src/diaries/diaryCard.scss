@@ -1,11 +1,14 @@
 #main-card-box {
-    margin-top: 2%;
-    max-width: 400px;
+    margin: auto;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    width: 400px;
+    // max-width: 400px;
     height: 500px;
 
     box-shadow: 5px 5px 10px rgb(252, 118, 118);
-    // background: linear-gradient(90deg, hsla(245, 54%, 54%, 1) 38%, hsla(225, 83%, 44%, 1) 100%);
     background: linear-gradient(90deg, hsla(0, 3%, 83%, 1) 12%, hsla(321, 32%, 91%, 1) 64%, hsla(190, 17%, 93%, 1) 97%);
+    opacity: 0.9;
     
     
     
@@ -36,4 +39,10 @@
         display: flex;
         margin-left: auto;
     }
+}
+
+#alert {
+    background-color: green;
+    color: white;
+    margin-top: 3rem;
 }

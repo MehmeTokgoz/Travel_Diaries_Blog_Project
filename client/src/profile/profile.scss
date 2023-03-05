@@ -1,22 +1,51 @@
 .profile-info-container {
-    // display: grid;
-    // grid-template-columns: auto auto auto;
-    // gap: 10px;
-    // margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 3rem;
+    opacity: 1;
+    background: url(../assets/about-img.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    // background: url(../assets/new-home-bg.jpg);
+    .profile-info-box {
+        background: linear-gradient(90deg, hsla(0, 3%, 83%, 1) 12%, hsla(321, 32%, 91%, 1) 64%, hsla(190, 17%, 93%, 1) 97%);
+        width: 40%;
+        opacity: 0.9;
+    }
 }
-.addNew-button {
+
+
+
+
+
+#addNew-button {
+    margin: auto;
     width: auto;
+    background-color: rgb(180, 66, 66);
+    border-radius: 15px;
+    // margin: auto;
+    // width: auto;
 }
 
 
 #diary-container {
+    background: url(../assets/about-img.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
     display: grid;
     grid-template-columns: auto auto auto;
     gap: 10px;
-    margin-top: 30px;  
+    margin-top: 3px;
+    
 }
 
 #user-profile {
     margin: 5px;
     font-size: 40px;
+ 
+    font-family: cursive;
+    font-size: 30px;
 }

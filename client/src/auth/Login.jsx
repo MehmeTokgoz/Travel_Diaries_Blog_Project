@@ -56,8 +56,8 @@ function Login() {
   };
 
   return (
-    <Box>
-      <form onSubmit={handleSubmit}>
+    <Box id="main-login-box">
+      <form className="login-form" onSubmit={handleSubmit}>
 
         <Box className="form-box">
         <Typography className="signup-login">
@@ -90,7 +90,7 @@ function Login() {
           <Button className="submit-button" type="submit">
             {isSignup ? "Signup" : "Login"}
           </Button>
-          <Button onClick={() => setIsSignup(!isSignup)}>
+          <Button className="go-to-button" onClick={() => setIsSignup(!isSignup)}>
             Go to {isSignup ? "Login" : "Signup"}
           </Button>
         </Box>
