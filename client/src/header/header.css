@@ -16,10 +16,10 @@
   text-decoration: none;
 }
 .tabs #tab {
-  color: rgb(4, 17, 53);
+  color: rgb(88, 102, 143);
 }
 .tabs #tab:hover {
-  color: rgb(207, 204, 230);
+  color: rgb(47, 44, 63);
   text-decoration: underline;
   text-underline-offset: 18px;
 }

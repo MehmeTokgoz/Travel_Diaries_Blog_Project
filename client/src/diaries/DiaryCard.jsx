@@ -33,8 +33,8 @@ const DiaryCard = (props) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userId, setUserId] = useState();
   const [user, setUser] = useState();
-  const [posts, setPosts] = useState([]);
-  const [userPosts, setUserPosts] = useState([]);
+  // const [posts, setPosts] = useState([]);
+  // const [userPosts, setUserPosts] = useState([]);
   const navigate = useNavigate();
 
   console.log(props.id);
