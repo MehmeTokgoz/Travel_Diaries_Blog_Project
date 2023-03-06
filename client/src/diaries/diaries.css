@@ -1,0 +1,7 @@
+.diary-container {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  gap: 10px;
+  margin-top: 3rem;
+  background: url(../assets/new-diaries-bg-1.jpg);
+}/*# sourceMappingURL=diaries.css.map */

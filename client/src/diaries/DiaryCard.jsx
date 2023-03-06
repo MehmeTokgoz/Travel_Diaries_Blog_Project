@@ -35,6 +35,7 @@ const DiaryCard = (props) => {
   const [user, setUser] = useState();
   const [posts, setPosts] = useState([]);
   const [userPosts, setUserPosts] = useState([]);
+  const navigate = useNavigate();
 
   console.log(props.id);
 
@@ -68,10 +69,11 @@ const DiaryCard = (props) => {
   ///////////////////////////
 
   const handleDelete = async (id, newState) => {
+    setAlertPosition({open: true, ...newState})
     await axios
       .delete(`http://localhost:4000/posts/${id}`)
       .catch((error) => console.log(error));
-      setAlertPosition({open: true, ...newState})
+      navigate("/diaries")
     // setOpen(true);
     console.log(id);
     // window.location.reload(true);

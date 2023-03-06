@@ -1,0 +1,62 @@
+#main-login-box {
+  width: 100%;
+  height: 100vh;
+  background: url(../assets/new-home-bg.jpg);
+  margin-top: 3rem;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+#main-login-box .login-form {
+  display: flex;
+}
+#main-login-box .form-box {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  justify-content: center;
+  border: 1px solid black;
+  box-shadow: 5px 5px 10px rgb(252, 118, 118);
+  border-radius: 15px;
+  padding: 5px;
+  height: 70vh;
+  width: 30%;
+  margin: auto;
+  margin-top: 6rem;
+}
+#main-login-box .form-box .signup-login {
+  background: linear-gradient(90deg, hsl(217, 62%, 57%) 52%, hsl(225, 83%, 44%) 100%);
+  border-radius: 15px;
+}
+#main-login-box .form-box #input-text-field1 {
+  height: 0.4rem;
+}
+#main-login-box .form-box #input-text-field2 {
+  height: 0.4rem;
+}
+#main-login-box .form-box #input-text-field3 {
+  height: 0.4rem;
+}
+#main-login-box .form-box .submit-button {
+  color: white;
+  margin-top: 12px;
+  background: linear-gradient(90deg, hsl(217, 62%, 57%) 52%, hsl(225, 83%, 44%) 100%);
+  border-radius: 15px;
+}
+#main-login-box .form-box .submit-button:hover {
+  background: linear-gradient(90deg, hsl(217, 62%, 57%) 52%, hsl(225, 83%, 44%) 100%);
+}
+#main-login-box .form-box .signup-login {
+  color: white;
+  background: linear-gradient(90deg, hsl(217, 62%, 57%) 52%, hsl(225, 83%, 44%) 100%);
+  margin-bottom: 40px;
+}
+#main-login-box .form-box .form-labels {
+  display: flex;
+  margin-top: 10px;
+}
+#main-login-box .go-to-button {
+  margin: auto 0;
+  background: linear-gradient(90deg, hsl(217, 62%, 57%) 52%, hsl(225, 83%, 44%) 100%);
+  color: white;
+  border-radius: 15px;
+}/*# sourceMappingURL=login-signup.css.map */

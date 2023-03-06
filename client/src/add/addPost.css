@@ -1,0 +1,93 @@
+.main-box {
+  display: flex;
+  flex-direction: column;
+  background: url(../assets/add-post-bg-2.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin-top: 3rem;
+  width: 100%;
+  height: 100%;
+}
+.main-box .title-icon-box {
+  display: flex;
+  margin: auto;
+  align-items: center;
+  padding: 2px;
+}
+.main-box .add-travel-text {
+  font-weight: bold;
+  font-size: 40px;
+  margin-top: 2rem;
+  font-family: "dancing script";
+}
+.main-box .travel-icon {
+  font-size: 40px;
+  margin-top: 2rem;
+  padding-left: 3px;
+  color: lightcoral;
+}
+.main-box .inputs-name-box {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  height: 100vh;
+  margin: auto;
+  padding: 3px;
+}
+.main-box .title-date-box {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+.main-box .title-box {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  padding: 2%;
+  padding-left: 0;
+}
+.main-box .date-box {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  padding: 2%;
+  padding-right: 0;
+}
+.main-box .form-labels {
+  font-family: "quicksand";
+}
+.main-box .post-button {
+  background-color: rgb(180, 66, 66);
+  color: white;
+  width: 50%;
+  margin: auto;
+  margin-top: 1.5rem;
+  border-radius: 15px;
+}
+.main-box .post-button:hover {
+  background-color: rgb(180, 66, 66);
+}
+.main-box .input-text-fields {
+  border: 1px solid black;
+  border-radius: 5px;
+}
+
+#form-labels1 {
+  font: 900;
+}
+
+#form-labels2 {
+  font: 900;
+}
+
+#form-labels3 {
+  font: 900;
+}
+
+#form-labels4 {
+  font: 900;
+}
+
+#form-labels5 {
+  font: 900;
+}/*# sourceMappingURL=addPost.css.map */

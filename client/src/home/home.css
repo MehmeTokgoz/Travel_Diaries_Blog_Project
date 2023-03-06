@@ -1,0 +1,170 @@
+#main-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100vh;
+  background: url(../assets/new-home-bg.jpg);
+  margin-top: 3rem;
+  box-sizing: border-box;
+  opacity: 0.9;
+}
+#main-box .header-titles {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  margin: auto;
+  margin-top: 2rem;
+  width: 70%;
+}
+#main-box .first-typography {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 0px;
+  font-family: "Dancing Script", cursive;
+  font-size: 70px;
+  font-weight: bolder;
+  text-align: center;
+  width: 100%;
+  color: rgba(233, 233, 233, 0.8705882353);
+  background: #b2c8df;
+  background-color: transparent;
+  text-shadow: 2px 2px 4px;
+}
+#main-box .first-typo-detail {
+  display: flex;
+  justify-content: center;
+  font-size: 40px;
+  font-family: "Dancing Script", cursive;
+  color: rgba(233, 233, 233, 0.8705882353);
+  background: #b2c8df;
+  background-color: transparent;
+  text-shadow: 2px 2px 4px;
+}
+#main-box .diary-button {
+  color: rgba(233, 233, 233, 0.8705882353);
+  box-sizing: border-box;
+  background-color: rgb(143, 21, 173);
+  margin-top: 5rem;
+  font-size: 20px;
+  font-family: cursive;
+  width: 50%;
+  background: transparent;
+  border: 1px solid white;
+}
+#main-box .diary-button:hover {
+  background-color: rgb(180, 66, 66);
+}
+
+.share-story-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100vh;
+  background: url(../assets/new-home-share-story-1.jpg);
+  opacity: 0.7;
+  box-sizing: border-box;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.share-story-box .share-story-headers {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  margin: auto;
+  width: 70%;
+}
+.share-story-box .header-titles {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  margin: auto;
+  margin-top: 2rem;
+  width: 100%;
+}
+.share-story-box .diary-button {
+  color: white;
+  box-sizing: border-box;
+  background-color: rgb(143, 21, 173);
+  margin-top: 5rem;
+  font-size: 20px;
+  font-family: cursive;
+  width: 50%;
+  background: transparent;
+  border: 1px solid white;
+}
+.share-story-box .diary-button:hover {
+  background-color: rgb(180, 66, 66);
+}
+.share-story-box .share-story-first-typo {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: auto;
+  font-family: "Dancing Script", cursive;
+  font-size: 70px;
+  font-weight: bolder;
+  text-align: center;
+  width: 100%;
+  color: #ffffff;
+  background: #b2c8df;
+  background-color: transparent;
+  text-shadow: 2px 2px 4px;
+}
+.share-story-box .share-story-firs-typo-details {
+  display: flex;
+  justify-content: center;
+  font-size: 40px;
+  font-family: "Dancing Script", cursive;
+  color: #ffffff;
+  background: #b2c8df;
+  background-color: transparent;
+  text-shadow: 2px 2px 4px;
+  margin: auto;
+}
+
+.between-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 50vh;
+  background: linear-gradient(90deg, rgb(143, 199, 199) 12%, rgb(202, 187, 197) 64%, rgb(244, 247, 248) 97%);
+  margin-top: 2px;
+  margin-bottom: 2px;
+}
+
+#between-boxes-typo {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 0px;
+  font-family: "Dancing Script", cursive;
+  font-size: 70px;
+  font-weight: bolder;
+  text-align: center;
+  width: 100%;
+  color: #ffffff;
+  background-color: transparent;
+  text-shadow: 2px 2px 4px;
+}
+
+#bottom-navigation {
+  display: flex;
+  margin: 3px auto;
+  width: 100%;
+  background: linear-gradient(90deg, rgb(74, 87, 87) 12%, rgb(151, 142, 148) 64%, rgb(103, 117, 122) 97%);
+  opacity: 0.8;
+  justify-content: center;
+}/*# sourceMappingURL=home.css.map */

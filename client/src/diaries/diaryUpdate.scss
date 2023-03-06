@@ -1,0 +1,62 @@
+.main-diaryUpdate-box {
+    display: flex;
+    flex-direction: column;
+    background: url(../assets/add-post-bg-2.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin: auto;
+    // margin-top: 3rem;
+    width: 100%;
+    height: 100%;
+
+    .text-icon-box {
+        display: flex;
+        margin: 3rem auto;
+        align-items: center;
+        padding: 2px;
+
+    }
+    .update-travel-text {
+        font-weight: bold;
+        font-size: 40px;
+        margin-top: 2rem;
+        font-family: "dancing script"
+    }
+    .travel-icon {
+        font-size: 40px;
+        margin-top: 2rem;
+        padding-left: 3px;
+        color: lightcoral
+    }
+
+    .inputs-box {
+        display: flex;
+        flex-direction: column;
+        width: 50%;
+        height: 100vh;
+        padding-left: 0;
+        margin: auto;
+        padding: 3px;
+    }
+    .form-labels {
+        font-family: "quicksand";
+        font:bolder;
+    }
+    .inputs-text-fields {
+        border: 1px solid black;
+        border-radius: 5px;
+        width: 100%;
+    }
+    .update-button {
+        background-color: rgb(180, 66, 66);
+        color: white;
+        width: 50%;
+        margin: auto;
+        margin-top: 1.5rem;
+        border-radius: 15px;
+    }
+    .update-button:hover {
+        background-color: rgb(180, 66, 66);
+    }
+
+}

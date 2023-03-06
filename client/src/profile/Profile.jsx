@@ -151,7 +151,7 @@ function Profile() {
             );
           })
         ) : (
-          <p>You haven't any post</p>
+          <p className="no-post-text">You have no posts</p>
         )}
       </Box>
     </>

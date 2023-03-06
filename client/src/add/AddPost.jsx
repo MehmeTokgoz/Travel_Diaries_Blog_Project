@@ -1,5 +1,5 @@
 import axios from "axios";
-import { Box, Button, FormLabel, TextField, Typography } from "@mui/material";
+import { Alert, AlertTitle, Box, Button, FormLabel, Snackbar, TextField, Typography } from "@mui/material";
 import TravelExploreIcon from "@mui/icons-material/TravelExplore";
 import React from "react";
 import { useState, useEffect } from "react";
@@ -9,6 +9,12 @@ import "../add/addPost.scss";
 function AddPost() {
   const [userId, setUserId] = useState();
   const [isLoggedIn, setIsLoggedIn] = useState();
+  const [alertPosition, setAlertPosition] = useState({
+    open:false,
+    vertical: "top",
+    horizontal:"center"
+  })
+  const { vertical, horizontal, open } = alertPosition;
 
   const verifyUser = async () => {
     if (localStorage.getItem("token")) {
@@ -74,16 +80,16 @@ function AddPost() {
     navigate("/diaries");
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e, newState) => {
     e.preventDefault();
     console.log(inputs);
     addPost(inputs)
       .then(() => {
         navigate("/diaries");
-        alert("Post added");
         console.log(onResReceived);
       })
       .catch((err) => console.log(err));
+      setAlertPosition({open: true, ...newState});
   };
 
   return (
@@ -98,7 +104,7 @@ function AddPost() {
         <Box className="inputs-name-box">
           <Box className="title-date-box">
             <Box className= "title-box">
-              <FormLabel className="form-labels">Title</FormLabel>
+              <FormLabel id="form-labels1">Title</FormLabel>
               <TextField
                 className="input-text-fields"
                 onChange={handleChange}
@@ -108,7 +114,7 @@ function AddPost() {
               />
             </Box>
             <Box className= "date-box">
-            <FormLabel className="form-labels">Date</FormLabel>
+            <FormLabel id="form-labels2">Date</FormLabel>
               <TextField
                 className="input-text-fields"
                 type="date"
@@ -120,7 +126,7 @@ function AddPost() {
             </Box>
           </Box>
 
-          <FormLabel className="form-labels">Description</FormLabel>
+          <FormLabel id="form-labels3">Description</FormLabel>
           <TextField
             className="input-text-fields"
             onChange={handleChange}
@@ -128,7 +134,7 @@ function AddPost() {
             value={inputs.description}
             variant="outlined"
           />
-          <FormLabel className="form-labels">Image URL</FormLabel>
+          <FormLabel id="form-labels4">Image URL</FormLabel>
           <TextField
             className="input-text-fields"
             onChange={handleChange}
@@ -137,7 +143,7 @@ function AddPost() {
             variant="outlined"
           />
 
-          <FormLabel className="form-labels">Location</FormLabel>
+          <FormLabel id="form-labels5">Location</FormLabel>
           <TextField
             className="input-text-fields"
             onChange={handleChange}
@@ -151,6 +157,22 @@ function AddPost() {
           </Button>
         </Box>
       </form>
+      <Snackbar
+        open={open}
+        autoHideDuration={3000}
+        onClose={()=> setAlertPosition({...alertPosition, open: false})}
+        // onClose={() => setOpen(false)}
+        anchorOrigin={{ vertical: "top", horizontal: "right" }}
+      >
+        <Alert id="alert"
+          onClose={() => setAlertPosition({...alertPosition, open: false})}
+          severity="success"
+          sx={{ width: "100%" }}
+        >
+          <AlertTitle>SUCCESS</AlertTitle>
+          Post Added Successfully
+        </Alert>
+      </Snackbar>
     </Box>
   );
 

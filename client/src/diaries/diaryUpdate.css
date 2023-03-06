@@ -1,0 +1,57 @@
+.main-diaryUpdate-box {
+  display: flex;
+  flex-direction: column;
+  background: url(../assets/add-post-bg-2.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin: auto;
+  width: 100%;
+  height: 100%;
+}
+.main-diaryUpdate-box .text-icon-box {
+  display: flex;
+  margin: 3rem auto;
+  align-items: center;
+  padding: 2px;
+}
+.main-diaryUpdate-box .update-travel-text {
+  font-weight: bold;
+  font-size: 40px;
+  margin-top: 2rem;
+  font-family: "dancing script";
+}
+.main-diaryUpdate-box .travel-icon {
+  font-size: 40px;
+  margin-top: 2rem;
+  padding-left: 3px;
+  color: lightcoral;
+}
+.main-diaryUpdate-box .inputs-box {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  height: 100vh;
+  padding-left: 0;
+  margin: auto;
+  padding: 3px;
+}
+.main-diaryUpdate-box .form-labels {
+  font-family: "quicksand";
+  font: bolder;
+}
+.main-diaryUpdate-box .inputs-text-fields {
+  border: 1px solid black;
+  border-radius: 5px;
+  width: 100%;
+}
+.main-diaryUpdate-box .update-button {
+  background-color: rgb(180, 66, 66);
+  color: white;
+  width: 50%;
+  margin: auto;
+  margin-top: 1.5rem;
+  border-radius: 15px;
+}
+.main-diaryUpdate-box .update-button:hover {
+  background-color: rgb(180, 66, 66);
+}/*# sourceMappingURL=diaryUpdate.css.map */

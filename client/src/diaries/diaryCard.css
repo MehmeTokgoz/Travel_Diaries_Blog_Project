@@ -1,0 +1,37 @@
+#main-card-box {
+  margin: auto;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  width: 400px;
+  height: 500px;
+  box-shadow: 5px 5px 10px rgb(252, 118, 118);
+  background: linear-gradient(90deg, hsl(0, 3%, 83%) 12%, hsl(321, 32%, 91%) 64%, hsl(190, 17%, 93%) 97%);
+  opacity: 0.9;
+}
+
+.diaryCardHeader {
+  margin: 2px auto;
+}
+.diaryCardHeader .avatar {
+  background-color: red;
+}
+
+.card-info-header h3 {
+  font-size: 20px;
+}
+
+.cardActions-buttons {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 15px;
+}
+.cardActions-buttons .edit-icon {
+  display: flex;
+  margin-left: auto;
+}
+
+#alert {
+  background-color: green;
+  color: white;
+  margin-top: 3rem;
+}/*# sourceMappingURL=diaryCard.css.map */

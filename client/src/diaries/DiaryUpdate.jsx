@@ -1,10 +1,11 @@
 import axios from "axios";
-import { Button, FormLabel, TextField, Typography } from "@mui/material";
+import { Alert, AlertTitle, Button, FormLabel, Snackbar, TextField, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import React from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import TravelExploreIcon from "@mui/icons-material/TravelExplore";
+import "../diaries/diaryUpdate.scss";
 
 function DiaryUpdate() {
   // const [userId, setUserId] = useState();
@@ -16,6 +17,12 @@ function DiaryUpdate() {
     location: "",
     image: "",
   });
+  const [alertPosition, setAlertPosition] = useState({
+    open:false,
+    vertical: "top",
+    horizontal:"center"
+  })
+  const { vertical, horizontal, open } = alertPosition;
 
   const id = useParams().id;
   const navigate = useNavigate();
@@ -56,7 +63,7 @@ function DiaryUpdate() {
         image: data.image,
         date: new Date(),
       })
-      .then( async () => {
+      .then(async () => {
         if (res.status !== 200) {
           alert("Post not updated");
           return console.log("Unable to udpate");
@@ -74,75 +81,65 @@ function DiaryUpdate() {
       [e.target.name]: e.target.value,
     }));
   };
-  const handleSubmit = (e) => {
+  const handleSubmit = (e, newState) => {
+    setAlertPosition({open: true, ...newState});
     e.preventDefault();
     console.log(inputs);
     postUpdate(inputs)
       .then((data) => {
         console.log(data);
-        alert("Post Updated");
-        navigate("/profile")
+        // alert("Post Updated");
+        navigate("/profile");
       })
       .catch((err) => {
         console.log(err);
         alert("not updated");
       });
+  
   };
   return (
-    <Box display="flex" flexDirection={"column"} width="100%" height="100%">
-      <Box display="flex" margin="auto" padding={2}>
-        <Typography
-          fontWeight={"bold"}
-          variant="h4"
-          fontFamily={"dancing script"}
-        >
-          Add Your Travel Diary
+    <Box className="main-diaryUpdate-box">
+      <Box className="text-icon-box">
+        <Typography className="update-travel-text" variant="h4">
+          Update Your Travel Diary
         </Typography>
-        <TravelExploreIcon
-          sx={{ fontSize: "40px", paddingLeft: 1, color: "lightcoral  " }}
-        />
+        <TravelExploreIcon className="travel-icon" />
       </Box>
       {post && (
         <form onSubmit={handleSubmit}>
-          <Box
-            padding={3}
-            display="flex"
-            width="80%"
-            margin="auto"
-            flexDirection={"column"}
-          >
-            <FormLabel sx={{ fontFamily: "quicksand" }}>Title</FormLabel>
+          <Box className="inputs-box">
+            <FormLabel className="form-labels">Title</FormLabel>
             <TextField
+              className="inputs-text-fields"
               onChange={handleChange}
               name="title"
               value={inputs.title}
-              variant="standard"
-              margin="normal"
+              variant="outlined"
             />
-            <FormLabel sx={{ fontFamily: "quicksand" }}>Description</FormLabel>
+            <FormLabel className="form-labels">Description</FormLabel>
             <TextField
+              className="inputs-text-fields"
               onChange={handleChange}
               name="description"
               value={inputs.description}
-              variant="standard"
-              margin="normal"
+              variant="outlined"
             />
-            <FormLabel sx={{ fontFamily: "quicksand" }}>Image </FormLabel>
+            <FormLabel className="form-labels">Image </FormLabel>
             <TextField
+              className="inputs-text-fields"
               onChange={handleChange}
               name="image"
               value={inputs.image}
-              variant="standard"
-              margin="normal"
+              variant="outlined"
             />
 
-            <FormLabel sx={{ fontFamily: "quicksand" }}>Location</FormLabel>
+            <FormLabel className="form-labels">Location</FormLabel>
             <TextField
+              className="inputs-text-fields"
               onChange={handleChange}
               name="location"
               value={inputs.location}
-              variant="standard"
-              margin="normal"
+              variant="outlined"
             />
             {/* <FormLabel sx={{ fontFamily: "quicksand" }}>Date</FormLabel>
           <TextField
@@ -155,9 +152,9 @@ function DiaryUpdate() {
           /> */}
 
             <Button
+              className="update-button"
               type="submit"
               color="warning"
-              sx={{ width: "50%", margin: "auto", mt: 2, borderRadius: 7 }}
               variant="contained"
             >
               Update
@@ -165,6 +162,22 @@ function DiaryUpdate() {
           </Box>
         </form>
       )}
+      <Snackbar
+        open={open}
+        autoHideDuration={3000}
+        onClose={()=> setAlertPosition({...alertPosition, open: false})}
+        // onClose={() => setOpen(false)}
+        anchorOrigin={{ vertical: "top", horizontal: "right" }}
+      >
+        <Alert id="alert"
+          onClose={() => setAlertPosition({...alertPosition, open: false})}
+          severity="success"
+          sx={{ width: "100%" }}
+        >
+          <AlertTitle>SUCCESS</AlertTitle>
+          Post Updated Successfully
+        </Alert>
+      </Snackbar>
     </Box>
   );
 }
