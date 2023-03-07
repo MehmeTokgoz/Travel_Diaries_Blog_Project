@@ -105,14 +105,15 @@ const DiaryCard = (props) => {
         user={props.user}
       />
       <img height="194" src={props.image} alt={props.title} />
-      <CardContent>
+      <CardContent id="main-card-info-content">
         <Typography className="card-info-header">
           {props.title} <br />
         </Typography>
         <hr />
-        <Box>
-          <Typography>{props.description}</Typography>
+        <Box className="post-description-box">
+          <Typography className="post-description">{props.description}</Typography>
         </Box>
+        <hr/>
         {isLoggedIn && (
           <CardActions className="cardActions-buttons">
             <IconButton

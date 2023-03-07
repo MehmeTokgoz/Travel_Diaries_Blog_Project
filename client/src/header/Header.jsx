@@ -1,7 +1,7 @@
 import React from "react";
 import axios from "axios";
 import { useState, useEffect } from "react";
-import { AppBar, Toolbar, Tabs, Tab, Slide, useScrollTrigger } from "@mui/material";
+import { AppBar, Toolbar, Tabs, Tab, Slide, useScrollTrigger, Snackbar, Alert, AlertTitle } from "@mui/material";
 import "./header.scss";
 import { Link, useNavigate } from "react-router-dom";
 import logo from "../assets/mt.jpg";
@@ -16,6 +16,12 @@ function Header(props) {
   const [value, setValue] = useState(false);
   const navigate = useNavigate();
   const trigger= useScrollTrigger();
+  const [alertPosition, setAlertPosition] = useState({
+    open:false,
+    vertical: "top",
+    horizontal:"center"
+  })
+  const { vertical, horizontal, open } = alertPosition;
   
   
 //////////
@@ -56,10 +62,10 @@ function HideOnScroll (props) {
   }, [verifyUser]);
   console.log(isLoggedIn);
 
-  const handleLogout = (e, val) => {
+  const handleLogout = (e, val, newState) => {
     setValue(val);
     if (val === 4) {
-      alert("Log out successful");
+      setAlertPosition({open: true, ...newState});
       localStorage.clear();
       navigate("/");
       setUserId("");
@@ -102,6 +108,22 @@ function HideOnScroll (props) {
           </Toolbar>
         </AppBar>
       </HideOnScroll>
+      <Snackbar
+        open={open}
+        autoHideDuration={3000}
+        onClose={()=> setAlertPosition({...alertPosition, open: false})}
+        // onClose={() => setOpen(false)}
+        anchorOrigin={{ vertical: "top", horizontal: "right" }}
+      >
+        <Alert id="alert"
+          onClose={() => setAlertPosition({...alertPosition, open: false})}
+          severity="success"
+          sx={{ width: "100%" }}
+        >
+          <AlertTitle>SUCCESS</AlertTitle>
+          Logout successful!
+        </Alert>
+      </Snackbar>
     </div>
   );
 

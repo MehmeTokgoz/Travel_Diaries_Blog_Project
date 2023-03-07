@@ -2,15 +2,13 @@
     margin: auto;
     margin-top: 2rem;
     margin-bottom: 2rem;
-    width: 400px;
-    // max-width: 400px;
+    // width: 400px;
+    max-width: 400px;
     height: 500px;
 
     box-shadow: 5px 5px 10px rgb(252, 118, 118);
     background: linear-gradient(90deg, hsla(0, 3%, 83%, 1) 12%, hsla(321, 32%, 91%, 1) 64%, hsla(190, 17%, 93%, 1) 97%);
-    opacity: 0.9;
-    
-    
+    opacity: 0.9;    
     
 }
 
@@ -22,6 +20,11 @@
         // background: transparent;
     }
 
+}
+
+#main-card-info-content {
+    
+    padding-top: 0px;
 }
 
 .card-info-header {
