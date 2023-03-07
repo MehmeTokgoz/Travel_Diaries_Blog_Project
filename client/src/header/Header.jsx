@@ -1,7 +1,7 @@
 import React from "react";
 import axios from "axios";
 import { useState, useEffect } from "react";
-import { AppBar, Toolbar, Tabs, Tab } from "@mui/material";
+import { AppBar, Toolbar, Tabs, Tab, Slide, useScrollTrigger } from "@mui/material";
 import "./header.scss";
 import { Link, useNavigate } from "react-router-dom";
 import logo from "../assets/mt.jpg";
@@ -9,11 +9,29 @@ import TravelExplore from "@mui/icons-material/TravelExplore";
 
 const linksArr = ["home", "diaries", "profile", "add", "logout"];
 const loggedOutlinksArr = ["home", "diaries", "login"];
-function Header() {
+
+function Header(props) {
   const [userId, setUserId] = useState();
   const [isLoggedIn, setIsLoggedIn] = useState();
   const [value, setValue] = useState(false);
   const navigate = useNavigate();
+  const trigger= useScrollTrigger();
+  
+  
+//////////
+function HideOnScroll (props) {
+  const { children} = props;
+
+  return (
+    <Slide appear={false} direction="down" in={!trigger}>
+      {children}
+    </Slide>
+  );
+}
+/////////////////
+
+
+  
 
   const verifyUser = async () => {
     if (localStorage.getItem("token")) {
@@ -48,41 +66,77 @@ function Header() {
       // setIsLoggedIn(false)
       // window.location.reload(true);
     }
-    console.log(isLoggedIn)
+    console.log(isLoggedIn);
   };
 
   return (
     <div>
       {" "}
-      <AppBar className="appbar">
-        <Toolbar className="toolbar">
-          <img src={logo} alt="#" />
-
-          <Tabs className="tabs" value={value} onChange={handleLogout}>
-            {isLoggedIn
-              ? linksArr.map((link) => (
-                  <Tab
-                    id="tab"
-                    key={link}
-                    label={link}
-                    LinkComponent={Link}
-                    to={`/${link === "home" ? "" : link === "logout" ? "" : link}`}
-                  />
-                ))
-              : loggedOutlinksArr.map((link) => (
-                  <Tab
-                    id="tab"
-                    key={link}
-                    label={link}
-                    LinkComponent={Link}
-                    to={`/${link === "home" ? "" : link}`}
-                  />
-                ))}
-          </Tabs>
-        </Toolbar>
-      </AppBar>
+      <HideOnScroll {...props}>
+        <AppBar className="appbar">
+          <Toolbar className="toolbar">
+            <img src={logo} alt="#" />
+            <Tabs className="tabs" value={value} onChange={handleLogout}>
+              {isLoggedIn
+                ? linksArr.map((link) => (
+                    <Tab
+                      id="tab"
+                      key={link}
+                      label={link}
+                      LinkComponent={Link}
+                      to={`/${
+                        link === "home" ? "" : link === "logout" ? "" : link
+                      }`}
+                    />
+                  ))
+                : loggedOutlinksArr.map((link) => (
+                    <Tab
+                      id="tab"
+                      key={link}
+                      label={link}
+                      LinkComponent={Link}
+                      to={`/${link === "home" ? "" : link}`}
+                    />
+                  ))}
+            </Tabs>
+          </Toolbar>
+        </AppBar>
+      </HideOnScroll>
     </div>
   );
+
+  // return (
+  //   <div>
+  //     {" "}
+  //     <AppBar className="appbar">
+  //       <Toolbar className="toolbar">
+  //         <img src={logo} alt="#" />
+
+  //         <Tabs className="tabs" value={value} onChange={handleLogout}>
+  //           {isLoggedIn
+  //             ? linksArr.map((link) => (
+  //                 <Tab
+  //                   id="tab"
+  //                   key={link}
+  //                   label={link}
+  //                   LinkComponent={Link}
+  //                   to={`/${link === "home" ? "" : link === "logout" ? "" : link}`}
+  //                 />
+  //               ))
+  //             : loggedOutlinksArr.map((link) => (
+  //                 <Tab
+  //                   id="tab"
+  //                   key={link}
+  //                   label={link}
+  //                   LinkComponent={Link}
+  //                   to={`/${link === "home" ? "" : link}`}
+  //                 />
+  //               ))}
+  //         </Tabs>
+  //       </Toolbar>
+  //     </AppBar>
+  //   </div>
+  // );
 }
 
 export default Header;
