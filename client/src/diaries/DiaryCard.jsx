@@ -23,10 +23,10 @@ import { useState } from "react";
 
 const DiaryCard = (props) => {
   const [alertPosition, setAlertPosition] = useState({
-    open:false,
+    open: false,
     vertical: "top",
-    horizontal:"center"
-  })
+    horizontal: "center",
+  });
   const { vertical, horizontal, open } = alertPosition;
 
   // const [open, setOpen] = useState(false);
@@ -69,11 +69,11 @@ const DiaryCard = (props) => {
   ///////////////////////////
 
   const handleDelete = async (id, newState) => {
-    setAlertPosition({open: true, ...newState})
+    setAlertPosition({ open: true, ...newState });
     await axios
       .delete(`http://localhost:4000/posts/${id}`)
       .catch((error) => console.log(error));
-      navigate("/diaries")
+    navigate("/diaries");
     // setOpen(true);
     console.log(id);
     // window.location.reload(true);
@@ -84,17 +84,21 @@ const DiaryCard = (props) => {
       <CardHeader
         className="diaryCardHeader"
         avatar={
-          <Avatar className="avatar" aria-label="recipe">        
-            {props.name}
-          </Avatar>
+          <>
+            <Avatar className="avatar" aria-label="recipe">
+              {props.name}
+            </Avatar>
+          </>
         }
         action={
           <IconButton aria-label="settings">
             <PlaceIcon />
           </IconButton>
         }
-        title={props.location}
+
+        subheader= {props.date}
         location={props.location}
+        title={props.location}
         date={props.date}
         id={props.id}
         description={props.description}
@@ -118,8 +122,12 @@ const DiaryCard = (props) => {
             >
               <ModeEditOutlineIcon />
             </IconButton>
-            <IconButton onClick={()=> handleDelete(props.id, {vertical:"top", horizontal:"right"})}>
-            {/* <IconButton onClick={() => handleDelete(props.id)}> */}
+            <IconButton
+              onClick={() =>
+                handleDelete(props.id, { vertical: "top", horizontal: "right" })
+              }
+            >
+              {/* <IconButton onClick={() => handleDelete(props.id)}> */}
               <DeleteForeverIcon />
             </IconButton>
           </CardActions>
@@ -136,16 +144,15 @@ const DiaryCard = (props) => {
       <Snackbar
         open={open}
         autoHideDuration={3000}
-        onClose={()=> setAlertPosition({...alertPosition, open: false})}
+        onClose={() => setAlertPosition({ ...alertPosition, open: false })}
         // onClose={() => setOpen(false)}
         anchorOrigin={{ vertical, horizontal }}
       >
-        <Alert id="alert"
-          onClose={() => setAlertPosition({...alertPosition, open: false})}
+        <Alert
+          id="alert"
+          onClose={() => setAlertPosition({ ...alertPosition, open: false })}
           severity="success"
           sx={{ width: "100%" }}
-          
-          
         >
           <AlertTitle>SUCCESS</AlertTitle>
           Post Deleted Successfully

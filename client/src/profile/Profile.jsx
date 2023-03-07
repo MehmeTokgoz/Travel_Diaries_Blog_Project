@@ -140,7 +140,7 @@ function Profile() {
               <DiaryCard
                 key={index}
                 title={post.title}
-                date={post.date}
+                date={new Date(`${post.date}`).toLocaleDateString()}
                 description={post.description}
                 id={post._id}
                 image={post.image}
