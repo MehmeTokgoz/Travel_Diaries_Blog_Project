@@ -7,14 +7,12 @@ import { Button, Tabs, Tab, Typography, AppBar, Toolbar } from "@mui/material";
 import { Link, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 
-
-import BottomNavigation from '@mui/material/BottomNavigation';
-import BottomNavigationAction from '@mui/material/BottomNavigationAction';
-import FolderIcon from '@mui/icons-material/Folder';
-import RestoreIcon from '@mui/icons-material/Restore';
-import FavoriteIcon from '@mui/icons-material/Favorite';
-import LocationOnIcon from '@mui/icons-material/LocationOn';
-
+import BottomNavigation from "@mui/material/BottomNavigation";
+import BottomNavigationAction from "@mui/material/BottomNavigationAction";
+import FolderIcon from "@mui/icons-material/Folder";
+import RestoreIcon from "@mui/icons-material/Restore";
+import FavoriteIcon from "@mui/icons-material/Favorite";
+import LocationOnIcon from "@mui/icons-material/LocationOn";
 
 function Home() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -29,7 +27,7 @@ function Home() {
           token: localStorage.getItem("token"),
         })
         .then(({ data }) => {
-          console.log(data)
+          console.log(data);
           setUserId(data._id);
         });
     }
@@ -50,13 +48,10 @@ function Home() {
     verifyUser();
     isLoggedIn ? navigate("add") : navigate("login");
   }
-  
-    const handleChange = (event, newValue) => {
-      setValue(newValue);
-    };
 
-
-
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
+  };
 
   return (
     <>
@@ -76,45 +71,52 @@ function Home() {
         </Box>
       </Box>
       <Box className="between-box">
-      <Typography id="between-boxes-typo"> Sharing is caring. Sharing is good</Typography>
+        <Typography id="between-boxes-typo">
+          {" "}
+          Sharing is caring. Sharing is good
+        </Typography>
       </Box>
       <Box className="share-story-box">
         <Box className="share-story-headers">
-          {/* <Typography className="share-story-first-typo"> Sharing is caring. Sharing is good</Typography> */}
-        <Typography className="share-story-firs-typo-details">
-          By sharing your travel memories, you can immortalize them and also
-          help those who plan their travels.{" "}
-        </Typography>
-        {/* <Box className="footer-box"> */}
-          {/* <Typography className="second-typography">
-            SHARE YOUR TRAVEL DIARIES WITH US
-          </Typography> */}
+          <Typography className="share-story-firs-typo-details">
+            By sharing your travel memories, you can immortalize them and also
+            help those who plan their travels.{" "}
+          </Typography>
           <Box className="header-titles">
-            <Button className="diary-button" onClick={shareStory}>Share Story</Button>
+            <Button className="diary-button" onClick={shareStory}>
+              Share Story
+            </Button>
           </Box>
-        {/* </Box> */}
         </Box>
-        
       </Box>
 
-      <BottomNavigation id="bottom-navigation" sx={{ width: 500 }} value={value} onChange={handleChange}>
-      <BottomNavigationAction
-        label="Recents"
-        value="recents"
-        icon={< RestoreIcon/>}
-      />
-      <BottomNavigationAction
-        label="Favorites"
-        value="favorites"
-        icon={<FavoriteIcon />}
-      />
-      <BottomNavigationAction
-        label="Nearby"
-        value="nearby"
-        icon={<LocationOnIcon />}
-      />
-      <BottomNavigationAction label="Folder" value="folder" icon={<FolderIcon />} />
-    </BottomNavigation>
+      <BottomNavigation
+        id="bottom-navigation"
+        sx={{ width: 500 }}
+        value={value}
+        onChange={handleChange}
+      >
+        <BottomNavigationAction
+          label="Recents"
+          value="recents"
+          icon={<RestoreIcon />}
+        />
+        <BottomNavigationAction
+          label="Favorites"
+          value="favorites"
+          icon={<FavoriteIcon />}
+        />
+        <BottomNavigationAction
+          label="Nearby"
+          value="nearby"
+          icon={<LocationOnIcon />}
+        />
+        <BottomNavigationAction
+          label="Folder"
+          value="folder"
+          icon={<FolderIcon />}
+        />
+      </BottomNavigation>
     </>
   );
 

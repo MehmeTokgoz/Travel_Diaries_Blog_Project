@@ -14,7 +14,6 @@ function Profile() {
   const [userPosts, setUserPosts] = useState([]);
   const navigate = useNavigate();
 
-
   // const verifyUser = async () => {
   //   if (localStorage.getItem("token")) {
   //     await axios
@@ -26,22 +25,20 @@ function Profile() {
   //       });
   //   }
   // };
-///////User info//////
+  ///////User info//////
   const getUserInfo = async () => {
-  await axios.get(`http://localhost:4000/user/${userId}`).then(({ data }) => {
-    console.log(data)
-        setUser(data);
-      });
-    };
+    await axios.get(`http://localhost:4000/user/${userId}`).then(({ data }) => {
+      console.log(data);
+      setUser(data);
+    });
+  };
 
-  
-    useEffect(() => {
-      getUserInfo();
-    }, [userId]);
+  useEffect(() => {
+    getUserInfo();
+  }, [userId]);
 
-
-  console.log(user)
-  console.log(userId)
+  console.log(user);
+  console.log(userId);
 
   const getAllPosts = async () => {
     await axios.get("http://localhost:4000/posts/").then(({ data }) => {
@@ -59,15 +56,12 @@ function Profile() {
 
   console.log(userPosts);
 
-  
   // useEffect(() => {
   //   getAllPosts();
   //   getUserPosts();
   //   // verifyUser();
   // }, [posts]);
-  
-  
-  
+
   useEffect(() => {
     getAllPosts();
     // verifyUser();
@@ -92,41 +86,54 @@ function Profile() {
       <Box className="profile-info-container">
         {user && (
           <>
-          <Box className="profile-info-box">
-          <Typography
-              id="user-profile"
-              textAlign={"center"}
-              variant="h3"
-              fontFamily={"quicksand"}
-              padding={2}
-            >
-              USER PROFILE
-            </Typography>
-            <Typography fontFamily={"quicksand"} padding={1} textAlign="left">
-              Name: {user.name}
-            </Typography>
-            <Typography fontFamily={"quicksand"} padding={1} textAlign="left">
-              Email: {user.email}
-            </Typography>
-            {/* <Button
-              onClick={handleClick}
-              sx={{ mr: "auto", width: "15%" }}
-              color="warning"
-              variant="contained"
-            >
-              Logout
-            </Button>{" "} */}
-            <br />
-            <Button id="addNew-button"
-              onClick={addNewPost}
-              sx={{ mr: "auto", width: "15%" }}
+            <Box className="profile-info-box">
+            <table>
+              <tr>
+                <th colSpan={2}>
+                <Typography
+                id="user-profile"
+                textAlign={"center"}
+                variant="h3"
+                fontFamily={"quicksand"}
+                padding={2}
+              >
+                USER PROFILE
+              </Typography>
+                </th>
+              </tr>
 
-              variant="contained"
-            >
-              Add New Post
-            </Button>{" "}
-          </Box>
-            
+              
+                <tr>
+                  <th>Name</th>
+                  <th>Email</th>
+                </tr>
+                <tr>
+                  <td>{user.name}</td>
+                  <td>{user.email}</td>
+                </tr>
+                <tr>
+                  <td colSpan={2}>
+                    {" "}
+                    <Button
+                      id="addNew-button"
+                      onClick={addNewPost}
+                      sx={{ mr: "auto", width: "15%" }}
+                      variant="contained"
+                    >
+                      Add New Post
+                    </Button>{" "}
+                  </td>
+                </tr>
+              </table>
+
+              {/* <Typography className="name-email-typo">
+                Name: {user.name}
+              </Typography>
+              <Typography className="name-email-typo">
+                Email: {user.email}
+              </Typography>
+              <br /> */}
+            </Box>
           </>
         )}
       </Box>

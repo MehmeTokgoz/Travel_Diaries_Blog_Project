@@ -1,7 +1,17 @@
 import React from "react";
 import axios from "axios";
 import { useState, useEffect } from "react";
-import { AppBar, Toolbar, Tabs, Tab, Slide, useScrollTrigger, Snackbar, Alert, AlertTitle } from "@mui/material";
+import {
+  AppBar,
+  Toolbar,
+  Tabs,
+  Tab,
+  Slide,
+  useScrollTrigger,
+  Snackbar,
+  Alert,
+  AlertTitle,
+} from "@mui/material";
 import "./header.scss";
 import { Link, useNavigate } from "react-router-dom";
 import logo from "../assets/mt.jpg";
@@ -15,29 +25,25 @@ function Header(props) {
   const [isLoggedIn, setIsLoggedIn] = useState();
   const [value, setValue] = useState(false);
   const navigate = useNavigate();
-  const trigger= useScrollTrigger();
+  const trigger = useScrollTrigger();
   const [alertPosition, setAlertPosition] = useState({
-    open:false,
+    open: false,
     vertical: "top",
-    horizontal:"center"
-  })
+    horizontal: "center",
+  });
   const { vertical, horizontal, open } = alertPosition;
-  
-  
-//////////
-function HideOnScroll (props) {
-  const { children} = props;
 
-  return (
-    <Slide appear={false} direction="down" in={!trigger}>
-      {children}
-    </Slide>
-  );
-}
-/////////////////
+  //////////
+  function HideOnScroll(props) {
+    const { children } = props;
 
-
-  
+    return (
+      <Slide appear={false} direction="down" in={!trigger}>
+        {children}
+      </Slide>
+    );
+  }
+  /////////////////
 
   const verifyUser = async () => {
     if (localStorage.getItem("token")) {
@@ -65,7 +71,7 @@ function HideOnScroll (props) {
   const handleLogout = (e, val, newState) => {
     setValue(val);
     if (val === 4) {
-      setAlertPosition({open: true, ...newState});
+      setAlertPosition({ open: true, ...newState });
       localStorage.clear();
       navigate("/");
       setUserId("");
@@ -110,13 +116,14 @@ function HideOnScroll (props) {
       </HideOnScroll>
       <Snackbar
         open={open}
-        autoHideDuration={3000}
-        onClose={()=> setAlertPosition({...alertPosition, open: false})}
+        autoHideDuration={2000}
+        onClose={() => setAlertPosition({ ...alertPosition, open: false })}
         // onClose={() => setOpen(false)}
         anchorOrigin={{ vertical: "top", horizontal: "right" }}
       >
-        <Alert id="alert"
-          onClose={() => setAlertPosition({...alertPosition, open: false})}
+        <Alert
+          id="alert"
+          onClose={() => setAlertPosition({ ...alertPosition, open: false })}
           severity="success"
           sx={{ width: "100%" }}
         >
@@ -126,39 +133,6 @@ function HideOnScroll (props) {
       </Snackbar>
     </div>
   );
-
-  // return (
-  //   <div>
-  //     {" "}
-  //     <AppBar className="appbar">
-  //       <Toolbar className="toolbar">
-  //         <img src={logo} alt="#" />
-
-  //         <Tabs className="tabs" value={value} onChange={handleLogout}>
-  //           {isLoggedIn
-  //             ? linksArr.map((link) => (
-  //                 <Tab
-  //                   id="tab"
-  //                   key={link}
-  //                   label={link}
-  //                   LinkComponent={Link}
-  //                   to={`/${link === "home" ? "" : link === "logout" ? "" : link}`}
-  //                 />
-  //               ))
-  //             : loggedOutlinksArr.map((link) => (
-  //                 <Tab
-  //                   id="tab"
-  //                   key={link}
-  //                   label={link}
-  //                   LinkComponent={Link}
-  //                   to={`/${link === "home" ? "" : link}`}
-  //                 />
-  //               ))}
-  //         </Tabs>
-  //       </Toolbar>
-  //     </AppBar>
-  //   </div>
-  // );
 }
 
 export default Header;

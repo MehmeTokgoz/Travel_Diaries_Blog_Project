@@ -1,29 +1,18 @@
 $main-color: rgb(39, 98, 209);
-
-
 .toolbar {
   background: linear-gradient(90deg, hsla(0, 3%, 83%, 1) 12%, hsla(321, 32%, 91%, 1) 64%, hsla(190, 17%, 93%, 1) 97%);
-  
-  
   img {
- 
-    width: 80px;
-    height: 50px;
+    max-width: 80px;
+    max-height: 50px;
     background: transparent;
   }
-}
-
-.travelicon {
-   color: black;
 }
 
 .tabs {
     margin-left: auto;
     text-decoration: none;
     #tab {
-        // text-decoration: none;
         color: rgb(88, 102, 143);
-
     }
     #tab:hover {
       color: rgb(47, 44, 63);
@@ -36,13 +25,8 @@ $main-color: rgb(39, 98, 209);
       background-color: $main-color;
       color: #ffffff;
       border-radius: 30px;
-
-
-    }
-    
+    } 
 }
 .appbar {
-    position: sticky;
-
-
+position: sticky;
 }

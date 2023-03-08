@@ -1,7 +1,7 @@
 #main-card-box {
     margin: auto;
     margin-top: 2rem;
-    margin-bottom: 2rem;
+    margin-bottom: 0rem;
     // width: 400px;
     max-width: 400px;
     height: 500px;
@@ -23,9 +23,24 @@
 }
 
 #main-card-info-content {
-    
-    padding-top: 0px;
+    box-sizing: border-box;
+    // padding-top: 0px;
+    // padding-bottom: 0%;
+    height: 100px;
+
+    .post-description {
+        overflow-y: auto;
+        height: 130px;
+        // scrollbar-width:thin;
+    }
+
+            .line {
+                margin: 1px auto;
+            }
+
 }
+
+
 
 .card-info-header {
     h3 {
@@ -35,8 +50,13 @@
 
 .cardActions-buttons {
     display: flex;
+    box-sizing: border-box;
     justify-content: center;
-    margin-bottom: 15px;
+    margin-bottom: 0px;
+    padding: 0px;
+    // margin-top: 0px;
+    // padding: 0px;
+
 
     .edit-icon {
         display: flex;
@@ -50,3 +70,63 @@
     margin-top: 3rem;
 
 }
+
+@media screen and (max-width: 992px) {
+    #main-card-box {
+        margin: auto;
+        margin-top: 2rem;
+        margin-bottom: 0rem;
+        // width: 400px;
+        max-width: 400px;
+        box-shadow: 5px 5px 10px rgb(252, 118, 118);
+        background: linear-gradient(90deg, hsla(0, 3%, 83%, 1) 12%, hsla(321, 32%, 91%, 1) 64%, hsla(190, 17%, 93%, 1) 97%);
+        opacity: 0.9; 
+    }
+    #main-card-info-content {
+        box-sizing: border-box;
+        // padding-top: 0px;
+        // padding-bottom: 0%;
+        height: 50px;
+    
+        .post-description {
+            overflow-y: auto;
+            height: 100px;
+            // scrollbar-width:thin;
+        }
+    
+                .line {
+                    margin: 1px auto;
+                }
+    
+    }
+  }
+
+  @media screen and (max-width: 600px) {
+    #main-card-box {
+        margin: auto;
+        margin-top: 2rem;
+        margin-bottom: 0rem;
+        // width: 400px;
+        max-width: 400px;
+        box-shadow: 5px 5px 10px rgb(252, 118, 118);
+        background: linear-gradient(90deg, hsla(0, 3%, 83%, 1) 12%, hsla(321, 32%, 91%, 1) 64%, hsla(190, 17%, 93%, 1) 97%);
+        opacity: 0.9; 
+    }
+    #main-card-info-content {
+        box-sizing: border-box;
+        // padding-top: 0px;
+        // padding-bottom: 0%;
+        height: 25px;
+    
+        .post-description {
+            overflow-y: auto;
+            height: 100px;
+            // scrollbar-width:thin;
+        }
+    
+                .line {
+                    margin: 1px auto;
+                }
+    
+    }
+  }

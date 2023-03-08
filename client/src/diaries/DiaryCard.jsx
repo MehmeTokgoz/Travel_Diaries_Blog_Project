@@ -101,16 +101,16 @@ const DiaryCard = (props) => {
         description={props.description}
         user={props.user}
       />
-      <img height="194" src={props.image} alt={props.title} />
+      <img height="200" src={props.image} alt={props.title} />
       <CardContent id="main-card-info-content">
         <Typography className="card-info-header">
           {props.title} <br />
         </Typography>
-        <hr />
+        <hr className="line" />
         <Box className="post-description-box">
           <Typography className="post-description">{props.description}</Typography>
         </Box>
-        <hr/>
+        <hr className="line"/>
         {isLoggedIn && (
           <CardActions className="cardActions-buttons">
             <IconButton
@@ -133,7 +133,7 @@ const DiaryCard = (props) => {
 
       <Snackbar
         open={open}
-        autoHideDuration={3000}
+        autoHideDuration={2000}
         onClose={() => setAlertPosition({ ...alertPosition, open: false })}
         anchorOrigin={{ vertical, horizontal }}
       >

@@ -159,7 +159,7 @@ function AddPost() {
       </form>
       <Snackbar
         open={open}
-        autoHideDuration={3000}
+        autoHideDuration={2000}
         onClose={()=> setAlertPosition({...alertPosition, open: false})}
         // onClose={() => setOpen(false)}
         anchorOrigin={{ vertical: "top", horizontal: "right" }}
