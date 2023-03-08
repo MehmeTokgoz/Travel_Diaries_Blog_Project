@@ -26,12 +26,14 @@ function Profile() {
   //       });
   //   }
   // };
-
+///////User info//////
   const getUserInfo = async () => {
   await axios.get(`http://localhost:4000/user/${userId}`).then(({ data }) => {
-        setUser(data.user);
+    console.log(data)
+        setUser(data);
       });
     };
+
   
     useEffect(() => {
       getUserInfo();
@@ -39,6 +41,7 @@ function Profile() {
 
 
   console.log(user)
+  console.log(userId)
 
   const getAllPosts = async () => {
     await axios.get("http://localhost:4000/posts/").then(({ data }) => {

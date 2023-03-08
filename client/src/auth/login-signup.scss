@@ -37,6 +37,7 @@ $main-color: rgb(39, 98, 209);
         width: 30%;
         margin: auto;
         margin-top: 6rem;
+        background: linear-gradient(90deg, hsla(0, 3%, 83%, 1) 12%, hsla(321, 32%, 91%, 1) 64%, hsla(190, 17%, 93%, 1) 97%);
 
         .signup-login {
             background: linear-gradient(90deg, hsla(217, 62%, 57%, 1) 52%, hsla(225, 83%, 44%, 1) 100%);
@@ -81,6 +82,7 @@ $main-color: rgb(39, 98, 209);
         .form-labels {
             display: flex;
             margin-top: 10px;
+            font-weight: bold;
         }
 
     }

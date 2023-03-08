@@ -27,7 +27,7 @@ const getUserById = async (req, res) => {
     if (!user) {
       return res.status(404).json({ message: "No user found" });
     }
-    return res.status(200).json({ user });
+    return res.status(200).json({ user: user._id, name: user.name, email: user.email  });
   } catch (error) {
     console.log(error);
   }
@@ -130,7 +130,7 @@ const login = async (req, res, next) => {
     const token = jwt.sign(payload, process.env.JWT_SECRET, {
       expiresIn: "1d",
     });
-    return res.send({ existingUser, token });
+    return res.send({_id: existingUser._id , token });
   } catch (error) {
     console.log(error);
   }
@@ -139,7 +139,7 @@ const verifyUser = async (req, res) => {
   jwt.verify(req.body.token, process.env.JWT_SECRET, async (err, payload) => {
     if (payload) {
       var user = await User.findOne({ _id: payload.id });
-      res.send(user);
+      res.send({_id: user._id, name: user.name, email: user.email});
     } else {
       res.send({ message: "Session expired" });
     }

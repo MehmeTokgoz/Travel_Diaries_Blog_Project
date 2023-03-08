@@ -26,9 +26,10 @@ function Login() {
         password: data.password,
       })
       .then(({ data }) => {
+        console.log(data)
         if (data.token) {
           localStorage.setItem("token", data.token);
-          localStorage.setItem("userId", data.existingUser._id);
+          localStorage.setItem("userId", data._id);
           console.log(data);
           console.log(1)
           navigate("/profile")

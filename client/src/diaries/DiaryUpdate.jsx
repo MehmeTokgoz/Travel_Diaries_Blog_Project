@@ -1,5 +1,13 @@
 import axios from "axios";
-import { Alert, AlertTitle, Button, FormLabel, Snackbar, TextField, Typography } from "@mui/material";
+import {
+  Alert,
+  AlertTitle,
+  Button,
+  FormLabel,
+  Snackbar,
+  TextField,
+  Typography,
+} from "@mui/material";
 import { Box } from "@mui/system";
 import React from "react";
 import { useNavigate, useParams } from "react-router-dom";
@@ -8,9 +16,8 @@ import TravelExploreIcon from "@mui/icons-material/TravelExplore";
 import "../diaries/diaryUpdate.scss";
 
 function DiaryUpdate() {
-  // const [userId, setUserId] = useState();
   const [post, setPost] = useState();
-  // const [postId, setPostId] = useState();
+
   const [inputs, setInputs] = useState({
     title: "",
     description: "",
@@ -18,10 +25,10 @@ function DiaryUpdate() {
     image: "",
   });
   const [alertPosition, setAlertPosition] = useState({
-    open:false,
+    open: false,
     vertical: "top",
-    horizontal:"center"
-  })
+    horizontal: "center",
+  });
   const { vertical, horizontal, open } = alertPosition;
 
   const id = useParams().id;
@@ -66,7 +73,7 @@ function DiaryUpdate() {
       .then(async () => {
         if (res.status !== 200) {
           alert("Post not updated");
-          return console.log("Unable to udpate");
+          return console.log("Unable to update");
         }
 
         const resData = await res.data;
@@ -82,7 +89,7 @@ function DiaryUpdate() {
     }));
   };
   const handleSubmit = (e, newState) => {
-    setAlertPosition({open: true, ...newState});
+    setAlertPosition({ open: true, ...newState });
     e.preventDefault();
     console.log(inputs);
     postUpdate(inputs)
@@ -95,7 +102,6 @@ function DiaryUpdate() {
         console.log(err);
         alert("not updated");
       });
-  
   };
   return (
     <Box className="main-diaryUpdate-box">
@@ -141,16 +147,6 @@ function DiaryUpdate() {
               value={inputs.location}
               variant="outlined"
             />
-            {/* <FormLabel sx={{ fontFamily: "quicksand" }}>Date</FormLabel>
-          <TextField
-            type="date"
-            onChange={handleChange}
-            name="date"
-            value={inputs.date}
-            variant="standard"
-            margin="normal"
-          /> */}
-
             <Button
               className="update-button"
               type="submit"
@@ -165,12 +161,12 @@ function DiaryUpdate() {
       <Snackbar
         open={open}
         autoHideDuration={3000}
-        onClose={()=> setAlertPosition({...alertPosition, open: false})}
-        // onClose={() => setOpen(false)}
+        onClose={() => setAlertPosition({ ...alertPosition, open: false })}
         anchorOrigin={{ vertical: "top", horizontal: "right" }}
       >
-        <Alert id="alert"
-          onClose={() => setAlertPosition({...alertPosition, open: false})}
+        <Alert
+          id="alert"
+          onClose={() => setAlertPosition({ ...alertPosition, open: false })}
           severity="success"
           sx={{ width: "100%" }}
         >

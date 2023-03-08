@@ -29,6 +29,7 @@ function Home() {
           token: localStorage.getItem("token"),
         })
         .then(({ data }) => {
+          console.log(data)
           setUserId(data._id);
         });
     }

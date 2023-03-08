@@ -5,7 +5,8 @@ const User = require("../modules/User");
 const getAllPosts = async (req, res) => {
   let posts;
   try {
-    posts = await Post.find().populate("user");
+    posts = await Post.find().populate("user", "name")
+    // posts = await Post.find().populate("user");
   } catch (error) {
     return console.log(error);
   }
@@ -131,13 +132,13 @@ const deletePost = async (req, res) => {
   let post;
 
   try {
-    const session = await mongoose.startSession();
-    session.startTransaction();
-    post = await Post.findById(id).populate("user");
-    post.user.posts.pull(post);
-    await post.user.save({ session });
+    // const session = await mongoose.startSession();
+    // session.startTransaction();
+    // post = await Post.findById(id).populate("user");
+    // post.user.posts.pull(post);
+    // await post.user.save({ session });
     post = await Post.findByIdAndDelete(id);
-    session.commitTransaction();
+    // session.commitTransaction();
   } catch (error) {
     return console.log(error);
   }

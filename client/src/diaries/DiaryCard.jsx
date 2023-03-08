@@ -64,9 +64,6 @@ const DiaryCard = (props) => {
     });
   }, [verifyUser]);
 
-  ///////////////////////////
-
-  ///////////////////////////
 
   const handleDelete = async (id, newState) => {
     setAlertPosition({ open: true, ...newState });
@@ -128,17 +125,9 @@ const DiaryCard = (props) => {
                 handleDelete(props.id, { vertical: "top", horizontal: "right" })
               }
             >
-              {/* <IconButton onClick={() => handleDelete(props.id)}> */}
               <DeleteForeverIcon />
             </IconButton>
           </CardActions>
-
-          // <CardActions className="cardActions-buttons">
-          //   <Button LinkComponent={Link} to={`/post/${props.id}`}>
-          //     EDIT
-          //   </Button>
-          //   <Button onClick={() => handleDelete(props.id)}>DELETE</Button>
-          // </CardActions>
         )}
       </CardContent>
 
@@ -146,7 +135,6 @@ const DiaryCard = (props) => {
         open={open}
         autoHideDuration={3000}
         onClose={() => setAlertPosition({ ...alertPosition, open: false })}
-        // onClose={() => setOpen(false)}
         anchorOrigin={{ vertical, horizontal }}
       >
         <Alert
@@ -161,6 +149,88 @@ const DiaryCard = (props) => {
       </Snackbar>
     </Card>
   );
+
+
+
+
+
+
+
+
+
+  // return (
+  //   <Card id="main-card-box">
+  //     <CardHeader
+  //       className="diaryCardHeader"
+  //       avatar={
+  //         <>
+  //           <Avatar className="avatar" aria-label="recipe">
+  //             {props.name}
+  //           </Avatar>
+  //         </>
+  //       }
+  //       action={
+  //         <IconButton aria-label="settings">
+  //           <PlaceIcon />
+  //         </IconButton>
+  //       }
+
+  //       subheader= {props.date}
+  //       location={props.location}
+  //       title={props.location}
+  //       date={props.date}
+  //       id={props.id}
+  //       description={props.description}
+  //       user={props.user}
+  //     />
+  //     <img height="194" src={props.image} alt={props.title} />
+  //     <CardContent id="main-card-info-content">
+  //       <Typography className="card-info-header">
+  //         {props.title} <br />
+  //       </Typography>
+  //       <hr />
+  //       <Box className="post-description-box">
+  //         <Typography className="post-description">{props.description}</Typography>
+  //       </Box>
+  //       <hr/>
+  //       {isLoggedIn && (
+  //         <CardActions className="cardActions-buttons">
+  //           <IconButton
+  //             className="edit-icon"
+  //             LinkComponent={Link}
+  //             to={`/post/${props.id}`}
+  //           >
+  //             <ModeEditOutlineIcon />
+  //           </IconButton>
+  //           <IconButton
+  //             onClick={() =>
+  //               handleDelete(props.id, { vertical: "top", horizontal: "right" })
+  //             }
+  //           >
+  //             <DeleteForeverIcon />
+  //           </IconButton>
+  //         </CardActions>
+  //       )}
+  //     </CardContent>
+
+  //     <Snackbar
+  //       open={open}
+  //       autoHideDuration={3000}
+  //       onClose={() => setAlertPosition({ ...alertPosition, open: false })}
+  //       anchorOrigin={{ vertical, horizontal }}
+  //     >
+  //       <Alert
+  //         id="alert"
+  //         onClose={() => setAlertPosition({ ...alertPosition, open: false })}
+  //         severity="success"
+  //         sx={{ width: "100%" }}
+  //       >
+  //         <AlertTitle>SUCCESS</AlertTitle>
+  //         Post Deleted Successfully
+  //       </Alert>
+  //     </Snackbar>
+  //   </Card>
+  // );
 };
 
 export default DiaryCard;
