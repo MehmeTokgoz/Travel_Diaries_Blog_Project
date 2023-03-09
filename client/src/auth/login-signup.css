@@ -22,6 +22,7 @@
   width: 30%;
   margin: auto;
   margin-top: 6rem;
+  background: linear-gradient(90deg, hsl(0, 3%, 83%) 12%, hsl(321, 32%, 91%) 64%, hsl(190, 17%, 93%) 97%);
 }
 #main-login-box .form-box .signup-login {
   background: linear-gradient(90deg, hsl(217, 62%, 57%) 52%, hsl(225, 83%, 44%) 100%);
@@ -53,6 +54,7 @@
 #main-login-box .form-box .form-labels {
   display: flex;
   margin-top: 10px;
+  font-weight: bold;
 }
 #main-login-box .go-to-button {
   margin: auto 0;

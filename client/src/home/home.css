@@ -167,4 +167,65 @@
   background: linear-gradient(90deg, rgb(74, 87, 87) 12%, rgb(151, 142, 148) 64%, rgb(103, 117, 122) 97%);
   opacity: 0.8;
   justify-content: center;
+}
+
+@media screen and (max-width: 992px) {
+  #main-box .first-typography {
+    margin-top: 0px;
+    font-size: 50px;
+  }
+  #main-box .first-typo-detail {
+    font-size: 20px;
+  }
+  #main-box .diary-button {
+    margin-top: 3rem;
+    font-size: 15px;
+    width: 30%;
+  }
+  .between-box {
+    width: 100%;
+    height: 30vh;
+  }
+  .between-box #between-boxes-typo {
+    font-size: 50px;
+  }
+  .share-story-box .share-story-firs-typo-details {
+    font-size: 25px;
+  }
+  .share-story-box .diary-button {
+    margin-top: 3rem;
+    font-size: 15px;
+    width: 30%;
+  }
+}
+@media screen and (max-width: 600px) {
+  #main-box .first-typography {
+    margin-top: 0px;
+    font-size: 30px;
+  }
+  #main-box .first-typo-detail {
+    font-size: 15px;
+  }
+  #main-box .diary-button {
+    margin-top: 1rem;
+    font-size: 10px;
+    width: 10%;
+  }
+  .between-box {
+    height: 10vh;
+    background: linear-gradient(90deg, rgb(143, 199, 199) 12%, rgb(202, 187, 197) 64%, rgb(244, 247, 248) 97%);
+    margin-top: 2px;
+    margin-bottom: 2px;
+  }
+  .between-box #between-boxes-typo {
+    font-size: 30px;
+  }
+  .share-story-box .share-story-firs-typo-details {
+    font-size: 15px;
+  }
+  .share-story-box .diary-button {
+    margin-top: 1rem;
+    font-size: 10px;
+    width: 10%;
+  }
 }/*# sourceMappingURL=home.css.map */

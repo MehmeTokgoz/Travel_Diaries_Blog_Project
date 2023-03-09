@@ -1,8 +1,8 @@
 #main-card-box {
   margin: auto;
   margin-top: 2rem;
-  margin-bottom: 2rem;
-  width: 400px;
+  margin-bottom: 0rem;
+  max-width: 400px;
   height: 500px;
   box-shadow: 5px 5px 10px rgb(252, 118, 118);
   background: linear-gradient(90deg, hsl(0, 3%, 83%) 12%, hsl(321, 32%, 91%) 64%, hsl(190, 17%, 93%) 97%);
@@ -16,14 +16,28 @@
   background-color: red;
 }
 
+#main-card-info-content {
+  box-sizing: border-box;
+  height: 100px;
+}
+#main-card-info-content .post-description {
+  overflow-y: auto;
+  height: 130px;
+}
+#main-card-info-content .line {
+  margin: 1px auto;
+}
+
 .card-info-header h3 {
   font-size: 20px;
 }
 
 .cardActions-buttons {
   display: flex;
+  box-sizing: border-box;
   justify-content: center;
-  margin-bottom: 15px;
+  margin-bottom: 0px;
+  padding: 0px;
 }
 .cardActions-buttons .edit-icon {
   display: flex;
@@ -34,4 +48,49 @@
   background-color: green;
   color: white;
   margin-top: 3rem;
+}
+
+@media screen and (max-width: 992px) {
+  #main-card-box {
+    margin: auto;
+    margin-top: 2rem;
+    margin-bottom: 0rem;
+    max-width: 400px;
+    box-shadow: 5px 5px 10px rgb(252, 118, 118);
+    background: linear-gradient(90deg, hsl(0, 3%, 83%) 12%, hsl(321, 32%, 91%) 64%, hsl(190, 17%, 93%) 97%);
+    opacity: 0.9;
+  }
+  #main-card-info-content {
+    box-sizing: border-box;
+    height: 50px;
+  }
+  #main-card-info-content .post-description {
+    overflow-y: auto;
+    height: 100px;
+  }
+  #main-card-info-content .line {
+    margin: 1px auto;
+  }
+}
+@media screen and (max-width: 600px) {
+  #main-card-box {
+    margin: auto;
+    margin-top: 2rem;
+    margin-bottom: 0rem;
+    max-width: 400px;
+    box-shadow: 5px 5px 10px rgb(252, 118, 118);
+    background: linear-gradient(90deg, hsl(0, 3%, 83%) 12%, hsl(321, 32%, 91%) 64%, hsl(190, 17%, 93%) 97%);
+    opacity: 0.9;
+  }
+  #main-card-info-content {
+    box-sizing: border-box;
+    height: 25px;
+  }
+  #main-card-info-content .post-description {
+    overflow-y: auto;
+    height: 100px;
+  }
+  #main-card-info-content .line {
+    margin: 1px auto;
+  }
 }/*# sourceMappingURL=diaryCard.css.map */

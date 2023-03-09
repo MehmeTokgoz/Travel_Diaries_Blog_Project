@@ -100,7 +100,7 @@ function AddPost() {
         </Typography>
         <TravelExploreIcon className="travel-icon" />
       </Box>
-      <form onSubmit={handleSubmit}>
+      <form id="inputs-form" onSubmit={handleSubmit}>
         <Box className="inputs-name-box">
           <Box className="title-date-box">
             <Box className= "title-box">

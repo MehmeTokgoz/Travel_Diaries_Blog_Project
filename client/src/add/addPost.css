@@ -6,18 +6,17 @@
   background-size: cover;
   margin-top: 3rem;
   width: 100%;
-  height: 100%;
+  height: 100vh;
 }
 .main-box .title-icon-box {
   display: flex;
-  margin: auto;
+  margin: 10px auto;
   align-items: center;
   padding: 2px;
 }
 .main-box .add-travel-text {
   font-weight: bold;
   font-size: 40px;
-  margin-top: 2rem;
   font-family: "dancing script";
 }
 .main-box .travel-icon {
@@ -30,9 +29,11 @@
   display: flex;
   flex-direction: column;
   width: 50%;
-  height: 100vh;
+  height: 70vh;
   margin: auto;
   padding: 3px;
+  background: linear-gradient(90deg, hsl(0, 3%, 83%) 12%, hsl(321, 32%, 91%) 64%, hsl(190, 17%, 93%) 97%);
+  border-radius: 15px;
 }
 .main-box .title-date-box {
   width: 100%;
@@ -73,21 +74,21 @@
 }
 
 #form-labels1 {
-  font: 900;
+  font-weight: bold;
 }
 
 #form-labels2 {
-  font: 900;
+  font-weight: bold;
 }
 
 #form-labels3 {
-  font: 900;
+  font-weight: bold;
 }
 
 #form-labels4 {
-  font: 900;
+  font-weight: bold;
 }
 
 #form-labels5 {
-  font: 900;
+  font-weight: bold;
 }/*# sourceMappingURL=addPost.css.map */
