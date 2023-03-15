@@ -9,23 +9,27 @@ It is a travel diary blog. The basis of the project is to allow users to share t
 
 This is an application created with MERN stack. Users can share their travel diaries and give an idea to others who want to go to travel.
 
-The blog can be used without registration or as a registration. Users can review all diaries and browse diaries by location, without registration. After registration, users can share update, delete their diaries.
-
-This project created using MERN Stack. **MERN Stack** was preferred for this project because it allows faster application development using only javascript and without combining different programming languages.  
-
-   **MongoDB** is a high-performance, cost-effective database system with a schemaless database feature.  
-
-   **Express.js** was used with Node.js, as it links easily and fast to databases.  
-
-   **React**, and Material UI were used to enhance the web design.  
-
-   **Node.js** was chosen for this application, as it is lightweight, efficient, has good performance, and is very fast in building web applications. In addition, there is a vast amount of tools in npm to support the developer.
+The blog can be used without registration or as a registration. Users can review all diaries and browse diaries by location, without registration. After registration, users can share update, delete their diaries.  
 
 This project aimed to build an application from scratch in one month and consolidate what has been learned. So, created RESTful APIs, the users get authenticated via a token, using the JsonWebToken library, used React states, props, and components.  
 
-In the future, I would like to add some more features to the project such as "favorites", "recently", and "nearby". Then, users can save their favorite places, browse recently added diaries, and search locations near to themselves. 
+In the future, I would like to add some more features to the project such as "favorites", "recently", and "nearby". Then, users can save their favorite places, browse recently added diaries, and search locations near to themselves.
 
-## Installation
+## Technologies
+
+This project created using MERN Stack. **MERN Stack** was preferred for this project because it allows faster application development using only javascript and without combining different programming languages.  
+
+   **MongoDB** **(mongoose)** is a high-performance, cost-effective database system with a schemaless database feature.  
+
+   **Express.js** was used with Node.js, as it links easily and fast to databases.  
+
+   **React**, **Material UI**, **Sass** were used to enhance the web design.  
+
+   **Node.js** was chosen for this application, as it is lightweight, efficient, has good performance, and is very fast in building web applications. In addition, there is a vast amount of tools in npm to support the developer.
+
+ 
+
+## Installation and Running Application
 
 The project is uploaded to Github.
 
