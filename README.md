@@ -36,7 +36,6 @@ This project created using MERN Stack. **MERN Stack** was preferred for this pro
 
    **Node.js** was chosen for this application, as it is lightweight, efficient, has good performance, and is very fast in building web applications. In addition, there is a vast amount of tools in npm to support the developer.
 
- 
 
 ## Installation and Running Application
 
