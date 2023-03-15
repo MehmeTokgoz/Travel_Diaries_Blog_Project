@@ -1,5 +1,14 @@
 # SHA Final-Project: Travel Diaries Blog
 
+# Table Of Contents:  
+  - [Overview](#overview)
+  - [Description](#description)
+  - [Technologies](#technologies)
+  - [Installation and Running Application](#installation-and-running-application)
+  - [Dependencies](#dependencies)
+  - [How to Use?](#how-to-use)
+  - [Credits](#credits)
+
 
 ## Overview
 
