@@ -1,5 +1,14 @@
 import axios from "axios";
-import { Alert, AlertTitle, Box, Button, FormLabel, Snackbar, TextField, Typography } from "@mui/material";
+import {
+  Alert,
+  AlertTitle,
+  Box,
+  Button,
+  FormLabel,
+  Snackbar,
+  TextField,
+  Typography,
+} from "@mui/material";
 import TravelExploreIcon from "@mui/icons-material/TravelExplore";
 import React from "react";
 import { useState, useEffect } from "react";
@@ -10,12 +19,13 @@ function AddPost() {
   const [userId, setUserId] = useState();
   const [isLoggedIn, setIsLoggedIn] = useState();
   const [alertPosition, setAlertPosition] = useState({
-    open:false,
+    open: false,
     vertical: "top",
-    horizontal:"center"
-  })
+    horizontal: "center",
+  });
   const { vertical, horizontal, open } = alertPosition;
 
+  //Send a request to check user.
   const verifyUser = async () => {
     if (localStorage.getItem("token")) {
       await axios
@@ -27,7 +37,7 @@ function AddPost() {
         });
     }
   };
-
+  //Call the verifyUser function on the page render and set the user status.
   useEffect(() => {
     verifyUser().then(() => {
       if (userId) {
@@ -38,6 +48,7 @@ function AddPost() {
     });
   }, [verifyUser]);
 
+  //Send a request to create a new post.
   const addPost = async (data) => {
     const res = await axios
       .post("http://localhost:4000/posts/", {
@@ -68,6 +79,7 @@ function AddPost() {
     date: "",
   });
 
+  //Get the values from text fields.
   const handleChange = (e) => {
     setInputs((prevState) => ({
       ...prevState,
@@ -80,6 +92,7 @@ function AddPost() {
     navigate("/diaries");
   };
 
+  // Call the addPost function on submitting the form and alert a notification
   const handleSubmit = (e, newState) => {
     e.preventDefault();
     console.log(inputs);
@@ -89,7 +102,7 @@ function AddPost() {
         console.log(onResReceived);
       })
       .catch((err) => console.log(err));
-      setAlertPosition({open: true, ...newState});
+    setAlertPosition({ open: true, ...newState });
   };
 
   return (
@@ -103,7 +116,7 @@ function AddPost() {
       <form id="inputs-form" onSubmit={handleSubmit}>
         <Box className="inputs-name-box">
           <Box className="title-date-box">
-            <Box className= "title-box">
+            <Box className="title-box">
               <FormLabel id="form-labels1">Title</FormLabel>
               <TextField
                 className="input-text-fields"
@@ -113,8 +126,8 @@ function AddPost() {
                 variant="outlined"
               />
             </Box>
-            <Box className= "date-box">
-            <FormLabel id="form-labels2">Date</FormLabel>
+            <Box className="date-box">
+              <FormLabel id="form-labels2">Date</FormLabel>
               <TextField
                 className="input-text-fields"
                 type="date"
@@ -160,12 +173,12 @@ function AddPost() {
       <Snackbar
         open={open}
         autoHideDuration={2000}
-        onClose={()=> setAlertPosition({...alertPosition, open: false})}
-        // onClose={() => setOpen(false)}
+        onClose={() => setAlertPosition({ ...alertPosition, open: false })}
         anchorOrigin={{ vertical: "top", horizontal: "right" }}
       >
-        <Alert id="alert"
-          onClose={() => setAlertPosition({...alertPosition, open: false})}
+        <Alert
+          id="alert"
+          onClose={() => setAlertPosition({ ...alertPosition, open: false })}
           severity="success"
           sx={{ width: "100%" }}
         >
@@ -175,66 +188,6 @@ function AddPost() {
       </Snackbar>
     </Box>
   );
-
-  // return (
-  //   <Box className="main-box">
-  //     <Box className="title-icon-box">
-  //       <Typography className="add-travel-text">
-  //         Add Your Travel Diary
-  //       </Typography>
-  //       <TravelExploreIcon className="travel-icon" />
-  //     </Box>
-  //     <form onSubmit={handleSubmit}>
-  //       <Box className="inputs-name-box">
-  //         <FormLabel className="form-labels">Title</FormLabel>
-  //         <TextField
-  //           className="input-text-fields"
-  //           onChange={handleChange}
-  //           name="title"
-  //           value={inputs.title}
-  //           variant="outlined"
-  //         />
-  //         <FormLabel className="form-labels">Description</FormLabel>
-  //         <TextField
-  //           className="input-text-fields"
-  //           onChange={handleChange}
-  //           name="description"
-  //           value={inputs.description}
-  //           variant="outlined"
-  //         />
-  //         <FormLabel className="form-labels">Image URL</FormLabel>
-  //         <TextField
-  //           className="input-text-fields"
-  //           onChange={handleChange}
-  //           name="image"
-  //           value={inputs.image}
-  //           variant="outlined"
-  //         />
-
-  //         <FormLabel className="form-labels">Location</FormLabel>
-  //         <TextField
-  //           className="input-text-fields"
-  //           onChange={handleChange}
-  //           name="location"
-  //           value={inputs.location}
-  //           variant="outlined"
-  //         />
-  //         <FormLabel className="form-labels">Date</FormLabel>
-  //         <TextField
-  //           className="input-text-fields"
-  //           type="date"
-  //           onChange={handleChange}
-  //           name="date"
-  //           value={inputs.date}
-  //           variant="outlined"
-  //         />
-  //         <Button className="post-button" type="submit" variant="contained">
-  //           Post
-  //         </Button>
-  //       </Box>
-  //     </form>
-  //   </Box>
-  // );
 }
 
 export default AddPost;

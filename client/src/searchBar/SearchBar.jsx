@@ -4,10 +4,12 @@ import React, { useState } from "react";
 function SearchBar({ onSearch }) {
   const [query, setQuery] = useState("");
 
+  // Get the values from input.
   const handleInputChange = (e) => {
     setQuery(e.target.value);
   };
 
+  
   const handleFormSubmit = (e) => {
     e.preventDefault();
     onSearch(query);

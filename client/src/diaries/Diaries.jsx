@@ -11,6 +11,7 @@ function Diaries() {
   const [searchResults, setSearchResults] = useState([]);
   const [searchState, setSearchState] = useState(false);
 
+  // Request to get all posts from database.
   const getAllPosts = async () => {
     await axios.get("http://localhost:4000/posts/").then(({ data }) => {
       if (data) {
@@ -19,11 +20,12 @@ function Diaries() {
       }
     });
   };
-
+// Call the getAllPosts function on the page render. 
   useEffect(() => {
     getAllPosts();
   }, []);
 
+//Filter posts by search
   const handleSearch = (query) => {
     setSearchState(true);
     setSearchResults(posts.filter((post) => post.location.toLowerCase().includes(query.toLowerCase())));
@@ -66,28 +68,6 @@ function Diaries() {
       </Box>
     </Box>
   );
-  ////////Çalışan//////////////////////////////
-
-  // return (
-  //   <Box className="diary-container">
-  //     <SearchBar />
-  //     {/* <SearchBar onSearch={handleSearch}/> */}
-  //     {posts &&
-  //       posts.map((item, index) => (
-  //         <DiaryCard
-  //           date={new Date(`${item.date}`).toLocaleDateString()}
-  //           description={item.description}
-  //           image={item.image}
-  //           id={item.user._id}
-  //           location={item.location}
-  //           title={item.title}
-  //           user={item.name}
-  //           key={index}
-  //           name = {item.user.name.charAt(0)}
-  //         />
-  //       ))}
-  //   </Box>
-  // );
 }
 
 export default Diaries;

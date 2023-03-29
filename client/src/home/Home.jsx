@@ -20,6 +20,7 @@ function Home() {
   const [userId, setUserId] = useState();
   const [value, setValue] = useState();
 
+  //Send a request to check user.
   const verifyUser = async () => {
     if (localStorage.getItem("token")) {
       await axios
@@ -33,6 +34,7 @@ function Home() {
     }
   };
 
+  //Call the verifyUser function on the page render and set the user status.
   useEffect(() => {
     verifyUser().then(() => {
       if (userId) {
@@ -44,11 +46,13 @@ function Home() {
   }, [verifyUser]);
   console.log(isLoggedIn);
 
+  //Navigate the user to the pages by user status.
   function shareStory() {
     verifyUser();
     isLoggedIn ? navigate("add") : navigate("login");
   }
 
+  // Get the values from text fields.
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
@@ -56,7 +60,6 @@ function Home() {
   return (
     <>
       <Box id="main-box">
-        {/* <img className="homeimage" src={homeImage} alt="#" /> */}
         <Box className="header-titles">
           <Typography className="first-typography">
             Stay close to people who feel like sunshine
@@ -119,24 +122,6 @@ function Home() {
       </BottomNavigation>
     </>
   );
-
-  // return (
-  //   <Box className="main-box">
-  //     <img className="homeimage" src={homeImage} alt="#" />
-  //     <Typography className="first-typography">Stay close to people who feel like sunshine</Typography>
-  //     <Box className="footer-box">
-  //     <Typography className="second-typography">
-  //           SHARE YOUR TRAVEL DIARIES WITH US
-  //         </Typography>
-  //       <Box className="button-box">
-  //         <Button onClick={shareStory}>Share Story</Button>
-  //         <Button className="diary-button" LinkComponent={Link} to="/diaries">
-  //           View Diaries
-  //         </Button>
-  //       </Box>
-  //     </Box>
-  //   </Box>
-  // );
 }
 
 export default Home;

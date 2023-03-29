@@ -2,11 +2,11 @@ const mongoose  = require("mongoose");
 const Post = require("../modules/Post");
 const User = require("../modules/User");
 
+//Get all posts from database
 const getAllPosts = async (req, res) => {
   let posts;
   try {
     posts = await Post.find().populate("user", "name")
-    // posts = await Post.find().populate("user");
   } catch (error) {
     return console.log(error);
   }
@@ -18,6 +18,7 @@ const getAllPosts = async (req, res) => {
   return res.status(200).json({ posts });
 };
 
+//Creating new post and save it in database
 const addPost = async (req, res) => {
   const { title, description, image, location, date, user } = req.body;
   if (
@@ -38,7 +39,7 @@ const addPost = async (req, res) => {
   let existingUser;
 
   try {
-    existingUser = await User.findById(user); //
+    existingUser = await User.findById(user);
   } catch (error) {
     return console.log(error);
   }
@@ -75,6 +76,7 @@ const addPost = async (req, res) => {
   return res.status(201).json({ post });
 };
 
+//Get one post from the database by using a post id
 const getPostById = async (req, res) => {
   const id = req.params.id;
 
@@ -91,6 +93,7 @@ const getPostById = async (req, res) => {
   }
 };
 
+//Update a post by using a post id
 const updatePostById = async (req, res) => {
   const id = req.params.id;
   const { title, description, image, location, date } = req.body;
@@ -127,18 +130,13 @@ const updatePostById = async (req, res) => {
   return res.status(200).json({ message: "Post updated successfully" });
 };
 
+//Delete a post from the database
 const deletePost = async (req, res) => {
   const id = req.params.id;
   let post;
 
   try {
-    // const session = await mongoose.startSession();
-    // session.startTransaction();
-    // post = await Post.findById(id).populate("user");
-    // post.user.posts.pull(post);
-    // await post.user.save({ session });
     post = await Post.findByIdAndDelete(id);
-    // session.commitTransaction();
   } catch (error) {
     return console.log(error);
   }

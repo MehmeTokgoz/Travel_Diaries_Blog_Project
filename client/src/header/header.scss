@@ -1,6 +1,8 @@
 $main-color: rgb(39, 98, 209);
+
 .toolbar {
   background: linear-gradient(90deg, hsla(0, 3%, 83%, 1) 12%, hsla(321, 32%, 91%, 1) 64%, hsla(190, 17%, 93%, 1) 97%);
+
   img {
     max-width: 80px;
     max-height: 50px;
@@ -9,24 +11,25 @@ $main-color: rgb(39, 98, 209);
 }
 
 .tabs {
-    margin-left: auto;
-    text-decoration: none;
-    #tab {
-        color: rgb(88, 102, 143);
-    }
-    #tab:hover {
-      color: rgb(47, 44, 63);
-        // color: rgb(207, 204, 230);
-        text-decoration: underline;
-        text-underline-offset: 18px;
-    }
+  margin-left: auto;
+  text-decoration: none;
 
-    #tab:last-child {
-      background-color: $main-color;
-      color: #ffffff;
-      border-radius: 30px;
-    } 
+  #tab {
+    color: rgb(88, 102, 143);
+  }
+
+  #tab:hover {
+    color: rgb(47, 44, 63);
+    text-underline-offset: 18px;
+  }
+
+  #tab:last-child {
+    background-color: $main-color;
+    color: #ffffff;
+    border-radius: 30px;
+  }
 }
+
 .appbar {
-position: sticky;
+  position: sticky;
 }

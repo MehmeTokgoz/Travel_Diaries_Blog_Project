@@ -2,6 +2,7 @@ const bcryptjs = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const User = require("../modules/User");
 
+//Get user information
 const getAllUsers = async (req, res) => {
   let users;
   try {
@@ -17,6 +18,7 @@ const getAllUsers = async (req, res) => {
   return res.status(200).json({ users });
 };
 
+// Get a specific user by id
 const getUserById = async (req, res) => {
   const id = req.params.id;
 
@@ -27,7 +29,9 @@ const getUserById = async (req, res) => {
     if (!user) {
       return res.status(404).json({ message: "No user found" });
     }
-    return res.status(200).json({ user: user._id, name: user.name, email: user.email  });
+    return res
+      .status(200)
+      .json({ user: user._id, name: user.name, email: user.email });
   } catch (error) {
     console.log(error);
   }
@@ -35,18 +39,11 @@ const getUserById = async (req, res) => {
 
 const signUp = async (req, res, next) => {
   const { name, email, password } = req.body;
-
-  if (
-    !name &&
-    // name.trim() === "" &&
-    !email &&
-    // email.trim() === "" &&
-    !password &&
-    password.length < 6
-    // password.trim() === ""
-  ) {
+  //Checking the required fields before creating the user:
+  if (!name && !email && !password && password.length < 6) {
     return res.status(422).json({ message: "Invalid Input" });
   }
+  // Hashing password:
   try {
     const salt = await bcryptjs.genSalt(10);
     const hashedPassword = await bcryptjs.hash(req.body.password, salt);
@@ -56,6 +53,7 @@ const signUp = async (req, res, next) => {
       email: email,
       password: hashedPassword,
     });
+    //Saving user into the database with a hashed password:
     await newUser.save();
     return res.status(201).json("New User Created.");
   } catch (error) {
@@ -63,58 +61,23 @@ const signUp = async (req, res, next) => {
   }
 };
 
-// const signUp = async (req, res, next) => {
-//   const { name, email, password } = req.body;
-//   if (
-//     !name &&
-//     name.trim() === "" &&
-//     !email &&
-//     email.trim() === "" &&
-//     !password &&
-//     password.length < 6 &&
-//     password.trim() === ""
-//   ) {
-//     return res.status(422).json({ message: "Invalid Input" });
-//   }
-//   const hashedPassword = hashSync(password);
-
-//   let user;
-//   try {
-//     user = new User({ email, name, password: hashedPassword });
-//     await user.save();
-//   } catch (error) {
-//     return console.log(error);
-//   }
-
-//   if (!user) {
-//     return res.status(500).json({ message: "Unexpected error occured" });
-//   }
-
-//   return res.status(201).json({ user });
-// };
-
 const login = async (req, res, next) => {
   const { email, password } = req.body;
-
-  if (
-    !email &&
-    // email.trim() === "" &&
-    !password &&
-    password.length < 6
-    // password.trim() === ""
-  ) {
+  // Checking the required fields before logging in
+  if (!email && !password && password.length < 6) {
     return res.send({ message: "Error code 422: Invalid Input" });
   }
 
+  //Get the user whose email is provided. And from that user get back name, email, password
   try {
     const existingUser = await User.findOne({ email: req.body.email }).select(
       "name email password"
     );
-
+    //Check the user exists or not:
     if (!existingUser) {
       return res.send({ message: "Error code 404: User was not found" });
     }
-
+    //Check the password if the user exists:
     const isPasswordCorrect = await bcryptjs.compare(
       req.body.password,
       existingUser.password
@@ -127,56 +90,25 @@ const login = async (req, res, next) => {
       id: existingUser._id,
       name: existingUser.name,
     };
+    // Create a token if the password is correct.
     const token = jwt.sign(payload, process.env.JWT_SECRET, {
       expiresIn: "1d",
     });
-    return res.send({_id: existingUser._id , token });
+    return res.send({ _id: existingUser._id, token });
   } catch (error) {
     console.log(error);
   }
 };
+// Check the user
 const verifyUser = async (req, res) => {
   jwt.verify(req.body.token, process.env.JWT_SECRET, async (err, payload) => {
     if (payload) {
       var user = await User.findOne({ _id: payload.id });
-      res.send({_id: user._id, name: user.name, email: user.email});
+      res.send({ _id: user._id, name: user.name, email: user.email });
     } else {
       res.send({ message: "Session expired" });
     }
   });
 };
-
-// const login = async (req, res, next) => {
-//   const { email, password } = req.body;
-//   if (
-//     !email &&
-//     email.trim() === "" &&
-//     !password &&
-//     password.length < 6 &&
-//     password.trim() === ""
-//   ) {
-//     return res.status(422).json({ message: "Invalid Input" });
-//   }
-
-//   let existingUser;
-//   try {
-//     existingUser = await User.findOne({ email });
-//   } catch (error) {
-//     console.log(error);
-//   }
-//   if (!existingUser) {
-//     return res.status(404).json({ message: "User was not found" });
-//   }
-//   const isPasswordCorrect = compareSync(password, existingUser.password);
-
-//   if (!isPasswordCorrect) {
-//     return res.status(400).json({ message: "Incorrect password" });
-//   }
-//   if (isPasswordCorrect) {
-//     return res
-//       .status(200)
-//       .json({ id: existingUser._id, message: "Login Successful" });
-//   }
-// };
 
 module.exports = { getAllUsers, signUp, login, verifyUser, getUserById };

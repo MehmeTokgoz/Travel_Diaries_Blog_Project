@@ -7,6 +7,7 @@ const cors = require("cors");
 const userRouter = require("./routers/userRoute");
 const postRouter = require("./routers/postRoute")
 
+// Adding midlewares
 app.use(bodyparser.json());
 app.use(
   cors({
@@ -14,8 +15,7 @@ app.use(
   })
 );
 
-
-//Middleware 
+//Routes// 
 app.use("/user", userRouter);
 app.use("/posts", postRouter);
 

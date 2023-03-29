@@ -2,10 +2,11 @@ import axios from "axios";
 import React, { useEffect } from "react";
 import { useState } from "react";
 import DiaryCard from "../diaries/DiaryCard";
-import { Button, Typography } from "@mui/material";
+import { Button, Tab, Tabs, Typography } from "@mui/material";
 import { Box } from "@mui/system";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams, Link } from "react-router-dom";
 import "../profile/profile.scss";
+import AddPost from "../add/AddPost";
 
 function Profile() {
   const [user, setUser] = useState();
@@ -14,18 +15,7 @@ function Profile() {
   const [userPosts, setUserPosts] = useState([]);
   const navigate = useNavigate();
 
-  // const verifyUser = async () => {
-  //   if (localStorage.getItem("token")) {
-  //     await axios
-  //       .post("http://localhost:4000/user/verify", {
-  //         token: localStorage.getItem("token"),
-  //       })
-  //       .then(({ data }) => {
-  //         setUserId(data._id);
-  //       });
-  //   }
-  // };
-  ///////User info//////
+  //Sen a request to get the user info.
   const getUserInfo = async () => {
     await axios.get(`http://localhost:4000/user/${userId}`).then(({ data }) => {
       console.log(data);
@@ -33,13 +23,12 @@ function Profile() {
     });
   };
 
+  // Call the getUserInfo function on page render.
   useEffect(() => {
     getUserInfo();
   }, [userId]);
 
-  console.log(user);
-  console.log(userId);
-
+  // Request to get all posts from database.
   const getAllPosts = async () => {
     await axios.get("http://localhost:4000/posts/").then(({ data }) => {
       if (data) {
@@ -49,34 +38,23 @@ function Profile() {
     });
   };
 
+  // Filter the current user posts.
   const getUserPosts = () => {
     const currentUserPosts = posts.filter((post) => post.user._id === userId);
     setUserPosts(currentUserPosts);
   };
 
-  console.log(userPosts);
-
-  // useEffect(() => {
-  //   getAllPosts();
-  //   getUserPosts();
-  //   // verifyUser();
-  // }, [posts]);
-
+  //Call the getAllPosts function on page render.
   useEffect(() => {
     getAllPosts();
-    // verifyUser();
   }, []);
 
+  //Call the getUserPosts function on page render.
   useEffect(() => {
     getUserPosts();
   }, [posts]);
 
-  // function handleClick() {
-  //   localStorage.clear();
-  //   navigate("/");
-  //   window.location.reload(true)
-  // }
-
+//Navigate the user to add post page.
   function addNewPost() {
     navigate("/add");
   }
@@ -87,22 +65,21 @@ function Profile() {
         {user && (
           <>
             <Box className="profile-info-box">
-            <table>
-              <tr>
-                <th colSpan={2}>
-                <Typography
-                id="user-profile"
-                textAlign={"center"}
-                variant="h3"
-                fontFamily={"quicksand"}
-                padding={2}
-              >
-                USER PROFILE
-              </Typography>
-                </th>
-              </tr>
+              <table>
+                <tr>
+                  <th colSpan={2}>
+                    <Typography
+                      id="user-profile"
+                      textAlign={"center"}
+                      variant="h3"
+                      fontFamily={"quicksand"}
+                      padding={2}
+                    >
+                      USER PROFILE
+                    </Typography>
+                  </th>
+                </tr>
 
-              
                 <tr>
                   <th>Name</th>
                   <th>Email</th>
@@ -125,14 +102,6 @@ function Profile() {
                   </td>
                 </tr>
               </table>
-
-              {/* <Typography className="name-email-typo">
-                Name: {user.name}
-              </Typography>
-              <Typography className="name-email-typo">
-                Email: {user.email}
-              </Typography>
-              <br /> */}
             </Box>
           </>
         )}

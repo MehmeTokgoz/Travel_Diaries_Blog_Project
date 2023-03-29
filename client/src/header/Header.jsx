@@ -15,9 +15,8 @@ import {
 import "./header.scss";
 import { Link, useNavigate } from "react-router-dom";
 import logo from "../assets/mt.jpg";
-import TravelExplore from "@mui/icons-material/TravelExplore";
 
-const linksArr = ["home", "diaries", "profile", "add", "logout"];
+const linksArr = ["home", "diaries", "add", "profile", "logout"];
 const loggedOutlinksArr = ["home", "diaries", "login"];
 
 function Header(props) {
@@ -33,7 +32,7 @@ function Header(props) {
   });
   const { vertical, horizontal, open } = alertPosition;
 
-  //////////
+  //Hide the navigation bar when scrolling.
   function HideOnScroll(props) {
     const { children } = props;
 
@@ -43,8 +42,8 @@ function Header(props) {
       </Slide>
     );
   }
-  /////////////////
 
+//Send a request to check user.
   const verifyUser = async () => {
     if (localStorage.getItem("token")) {
       await axios
@@ -57,6 +56,7 @@ function Header(props) {
     }
   };
 
+ //Call the verifyUser function on the page render and set the user status.
   useEffect(() => {
     verifyUser().then(() => {
       if (userId) {
@@ -68,6 +68,7 @@ function Header(props) {
   }, [verifyUser]);
   console.log(isLoggedIn);
 
+  // Clear local storage items when user logged out
   const handleLogout = (e, val, newState) => {
     setValue(val);
     if (val === 4) {
@@ -75,8 +76,6 @@ function Header(props) {
       localStorage.clear();
       navigate("/");
       setUserId("");
-      // setIsLoggedIn(false)
-      // window.location.reload(true);
     }
     console.log(isLoggedIn);
   };

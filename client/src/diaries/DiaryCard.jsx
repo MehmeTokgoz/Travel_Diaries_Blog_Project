@@ -14,7 +14,7 @@ import {
   Alert,
   AlertTitle,
 } from "@mui/material";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link, Navigate, useNavigate, useParams } from "react-router-dom";
 import "./diaryCard.scss";
 import PlaceIcon from "@mui/icons-material/Place";
 import ModeEditOutlineIcon from "@mui/icons-material/ModeEditOutline";
@@ -28,17 +28,12 @@ const DiaryCard = (props) => {
     horizontal: "center",
   });
   const { vertical, horizontal, open } = alertPosition;
-
-  // const [open, setOpen] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userId, setUserId] = useState();
   const [user, setUser] = useState();
-  // const [posts, setPosts] = useState([]);
-  // const [userPosts, setUserPosts] = useState([]);
   const navigate = useNavigate();
 
-  console.log(props.id);
-
+  //Send a request to check user.
   const verifyUser = async () => {
     if (localStorage.getItem("token")) {
       await axios
@@ -53,7 +48,7 @@ const DiaryCard = (props) => {
       console.log(user);
     }
   };
-
+  //Call the verifyUser function on the page render and set the user status.
   useEffect(() => {
     verifyUser().then(() => {
       if (userId) {
@@ -62,18 +57,16 @@ const DiaryCard = (props) => {
         setIsLoggedIn(false);
       }
     });
-  }, [verifyUser]);
+  }, [verifyUser, props]);
 
-
+  //Delete the post and alert a notification.
   const handleDelete = async (id, newState) => {
     setAlertPosition({ open: true, ...newState });
     await axios
       .delete(`http://localhost:4000/posts/${id}`)
       .catch((error) => console.log(error));
-    navigate("/diaries");
-    // setOpen(true);
+    window.location.reload(true);
     console.log(id);
-    // window.location.reload(true);
   };
 
   return (
@@ -92,8 +85,7 @@ const DiaryCard = (props) => {
             <PlaceIcon />
           </IconButton>
         }
-
-        subheader= {props.date}
+        subheader={props.date}
         location={props.location}
         title={props.location}
         date={props.date}
@@ -108,9 +100,11 @@ const DiaryCard = (props) => {
         </Typography>
         <hr className="line" />
         <Box className="post-description-box">
-          <Typography className="post-description">{props.description}</Typography>
+          <Typography className="post-description">
+            {props.description}
+          </Typography>
         </Box>
-        <hr className="line"/>
+        <hr className="line" />
         {isLoggedIn && (
           <CardActions className="cardActions-buttons">
             <IconButton
@@ -149,88 +143,6 @@ const DiaryCard = (props) => {
       </Snackbar>
     </Card>
   );
-
-
-
-
-
-
-
-
-
-  // return (
-  //   <Card id="main-card-box">
-  //     <CardHeader
-  //       className="diaryCardHeader"
-  //       avatar={
-  //         <>
-  //           <Avatar className="avatar" aria-label="recipe">
-  //             {props.name}
-  //           </Avatar>
-  //         </>
-  //       }
-  //       action={
-  //         <IconButton aria-label="settings">
-  //           <PlaceIcon />
-  //         </IconButton>
-  //       }
-
-  //       subheader= {props.date}
-  //       location={props.location}
-  //       title={props.location}
-  //       date={props.date}
-  //       id={props.id}
-  //       description={props.description}
-  //       user={props.user}
-  //     />
-  //     <img height="194" src={props.image} alt={props.title} />
-  //     <CardContent id="main-card-info-content">
-  //       <Typography className="card-info-header">
-  //         {props.title} <br />
-  //       </Typography>
-  //       <hr />
-  //       <Box className="post-description-box">
-  //         <Typography className="post-description">{props.description}</Typography>
-  //       </Box>
-  //       <hr/>
-  //       {isLoggedIn && (
-  //         <CardActions className="cardActions-buttons">
-  //           <IconButton
-  //             className="edit-icon"
-  //             LinkComponent={Link}
-  //             to={`/post/${props.id}`}
-  //           >
-  //             <ModeEditOutlineIcon />
-  //           </IconButton>
-  //           <IconButton
-  //             onClick={() =>
-  //               handleDelete(props.id, { vertical: "top", horizontal: "right" })
-  //             }
-  //           >
-  //             <DeleteForeverIcon />
-  //           </IconButton>
-  //         </CardActions>
-  //       )}
-  //     </CardContent>
-
-  //     <Snackbar
-  //       open={open}
-  //       autoHideDuration={3000}
-  //       onClose={() => setAlertPosition({ ...alertPosition, open: false })}
-  //       anchorOrigin={{ vertical, horizontal }}
-  //     >
-  //       <Alert
-  //         id="alert"
-  //         onClose={() => setAlertPosition({ ...alertPosition, open: false })}
-  //         severity="success"
-  //         sx={{ width: "100%" }}
-  //       >
-  //         <AlertTitle>SUCCESS</AlertTitle>
-  //         Post Deleted Successfully
-  //       </Alert>
-  //     </Snackbar>
-  //   </Card>
-  // );
 };
 
 export default DiaryCard;

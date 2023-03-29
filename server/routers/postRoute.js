@@ -1,5 +1,6 @@
 const postController = require("../controllers/postController");
 
+//Creating routes for posts
 const router = require("express").Router();
 
 router.get("/", postController.getAllPosts);

@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 dotenv.config();
 
-//Connection to MongoDB
+//Connection to database
 
 mongoose.set("strictQuery", false);
 

@@ -1,6 +1,4 @@
 import { Route, Routes } from "react-router-dom";
-import axios from "axios";
-import { useEffect, useState } from "react";
 import "./App.scss";
 import Header from "./header/Header";
 import Home from "./home/Home";
@@ -34,33 +32,6 @@ function App() {
             </>
         </Routes>
       </section>
-
-
-
-
-
-      {/* <section>
-        <Routes>
-          {isLoggedIn ? (
-            <>
-              <Route path="/" element={<Home />} />
-              <Route path="/diaries" element={<Diaries />} />
-              <Route path="/logout" element={<Login />} />
-              <Route path="/profile" element={<Profile />} />
-              <Route path="/add" element={<AddPost />} />
-              <Route path="/post/:id" element={<DiaryUpdate />} />
-            </>
-          )
-           : (
-            <>
-              <Route path="/" element={<Home />} />
-              <Route path="/diaries" element={<Diaries />} />
-              <Route path="/login" element={<Login />} />
-            </>
-           )
-          }
-        </Routes>
-      </section> */}
     </div>
   );
 }

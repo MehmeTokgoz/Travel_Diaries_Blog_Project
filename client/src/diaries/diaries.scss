@@ -6,16 +6,6 @@
   margin-top: 3rem;
   background: url(../assets/new-diaries-bg-1.jpg);
 
-  // .diary-container {
-  //   display: grid;
-  //   grid-template-columns: auto auto auto;
-  //   gap: 7px;
-  //   // margin-top: 0px;
-  //   // background: url(../assets/new-home-bg.jpg);
-  //   // background: url(../assets/new-diaries-bg-1.jpg);
-  //   // background: linear-gradient(90deg, hsla(339, 100%, 55%, 1) 0%, hsla(197, 100%, 64%, 1) 100%);
-  
-  // }
 }
 
 .diary-container {
@@ -23,11 +13,6 @@
   grid-template-columns: auto auto auto;
   gap: 7px;
   margin-top: 0px;
-  // margin-top: 0px;
-  // background: url(../assets/new-home-bg.jpg);
-  // background: url(../assets/new-diaries-bg-1.jpg);
-  // background: linear-gradient(90deg, hsla(339, 100%, 55%, 1) 0%, hsla(197, 100%, 64%, 1) 100%);
-
 }
 
 @media screen and (max-width: 992px) {

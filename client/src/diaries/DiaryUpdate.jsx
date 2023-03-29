@@ -17,7 +17,6 @@ import "../diaries/diaryUpdate.scss";
 
 function DiaryUpdate() {
   const [post, setPost] = useState();
-
   const [inputs, setInputs] = useState({
     title: "",
     description: "",
@@ -30,10 +29,10 @@ function DiaryUpdate() {
     horizontal: "center",
   });
   const { vertical, horizontal, open } = alertPosition;
-
   const id = useParams().id;
   const navigate = useNavigate();
 
+  // Request to get a post details from database.
   const getPostDetails = async (id) => {
     const res = await axios
       .get(`http://localhost:4000/posts/${id}`)
@@ -47,6 +46,7 @@ function DiaryUpdate() {
     return resData;
   };
 
+//Call the getPostDetails function and fill in the inputs with the post details.
   useEffect(() => {
     getPostDetails(id)
       .then((data) => {
@@ -61,6 +61,7 @@ function DiaryUpdate() {
       .catch((err) => console.log(err));
   }, [id]);
 
+  // Send a request to update the post.
   const postUpdate = async (data) => {
     const res = await axios
       .put(`http://localhost:4000/posts/${id}`, {
@@ -82,12 +83,15 @@ function DiaryUpdate() {
       .catch((err) => console.log(err));
   };
 
+  //Get the values from text fields.
   const handleChange = (e) => {
     setInputs((prevState) => ({
       ...prevState,
       [e.target.name]: e.target.value,
     }));
   };
+
+  // Call the postUpdate function on submitting the form and alert a notification.
   const handleSubmit = (e, newState) => {
     setAlertPosition({ open: true, ...newState });
     e.preventDefault();
@@ -95,7 +99,6 @@ function DiaryUpdate() {
     postUpdate(inputs)
       .then((data) => {
         console.log(data);
-        // alert("Post Updated");
         navigate("/profile");
       })
       .catch((err) => {
