@@ -18,20 +18,17 @@
 @media screen and (max-width: 992px) {
   .diaries-main-box {
     .diary-container {
-      display: grid;
       grid-template-columns: auto auto;
       gap: 5px;
       margin-top: 3rem;
       background: url(../assets/new-diaries-bg-1.jpg);
     }
   }
-
 }
 
 @media screen and (max-width: 600px) {
   .diaries-main-box {
     .diary-container {
-      display: grid;
       grid-template-columns: auto;
       gap: 5px;
       margin-top: 3rem;

@@ -8,6 +8,12 @@ $main-color: rgb(39, 98, 209);
     max-height: 50px;
     background: transparent;
   }
+
+  #menuIcon {
+    background-color: red;
+    color: #ffffff;
+    width: 120px;
+  }
 }
 
 .tabs {
@@ -33,3 +39,4 @@ $main-color: rgb(39, 98, 209);
 .appbar {
   position: sticky;
 }
+
