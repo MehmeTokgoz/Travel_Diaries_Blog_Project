@@ -1,18 +1,20 @@
 $main-color: rgb(39, 98, 209);
+.appbar {
+  position: sticky;
 
-.toolbar {
-  background: linear-gradient(90deg, hsla(0, 3%, 83%, 1) 12%, hsla(321, 32%, 91%, 1) 64%, hsla(190, 17%, 93%, 1) 97%);
+  .toolbar {
+    background: linear-gradient(
+      90deg,
+      hsla(0, 3%, 83%, 1) 12%,
+      hsla(321, 32%, 91%, 1) 64%,
+      hsla(190, 17%, 93%, 1) 97%
+    );
 
-  img {
-    max-width: 80px;
-    max-height: 50px;
-    background: transparent;
-  }
-
-  #menuIcon {
-    background-color: red;
-    color: #ffffff;
-    width: 120px;
+    img {
+      max-width: 80px;
+      max-height: 50px;
+      background: transparent;
+    }
   }
 }
 
@@ -35,8 +37,3 @@ $main-color: rgb(39, 98, 209);
     border-radius: 30px;
   }
 }
-
-.appbar {
-  position: sticky;
-}
-
